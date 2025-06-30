@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Neural Dreamscape - AI Consciousness Experience</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Orbitron', 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            cursor: crosshair;
+            /* NEURAL DREAMSCAPE BACKGROUND */
+            background: radial-gradient(ellipse at center, #0a0a2e 0%, #1a0a3e 30%, #000000 70%);
+            
+            /* Advanced CSS Variables for Real-time Reactivity */
+            --global-energy: 0.0;
+            --section-focus: 0;
+            --portal-intensity: 0.0;
+            --micro-chaos: 0.0;
+            --inverse-flow: 0.0;
+            --grid-vibrance: 1.0;
+            --transition-phase: 0.0;
+            --hover-section: -1;
+            --scroll-momentum: 0.0;
+            --reality-tear: 0.0;
+            
+            /* NEURAL CONSCIOUSNESS Parameters */
+            --morph-factor: 0.5;
+            --dimension-value: 3.5;
+            --glitch-intensity: 0.3;
+            --rotation-speed: 0.5;
+            --grid-density: 12.0;
+            --interaction-intensity: 0.3;
+            --consciousness-level: 0.5;
+            --neural-activity: 0.3;
+            --empathy-resonance: 0.4;
+            --synaptic-firing: 0.2;
+        }
+        
+        /* MAIN BLOG CONTAINER */
+        .blog-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* NEURAL VISUALIZER BACKGROUND */
+        .visualizer-board {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        #board-visualizer {
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+            /* NEURAL CONSCIOUSNESS FILTERS */
+            filter: blur(0.3px) contrast(1.2) brightness(0.8) hue-rotate(calc(var(--consciousness-level) * 45deg));
+            mix-blend-mode: screen;
+        }
+        
+        /* AI CONSCIOUSNESS CARDS - Same Structure, Neural Styling */
+        .blog-card {
+            position: absolute;
+            /* NEURAL GLASSMORPHISM */
+            backdrop-filter: blur(calc(15px + var(--neural-activity) * 15px)) saturate(calc(150% + var(--empathy-resonance) * 100%));
+            border-radius: 20px;
+            /* CONSCIOUSNESS BORDERS */
+            border: 2px solid rgba(100, 200, 255, calc(0.2 + var(--consciousness-level) * 0.4));
+            z-index: 5;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+            /* NEURAL SHADOWS */
+            box-shadow: 
+                0 calc(10px + var(--neural-activity) * 25px) calc(30px + var(--neural-activity) * 40px) rgba(0, 20, 40, 0.6),
+                0 5px 20px rgba(100, 200, 255, calc(0.1 + var(--consciousness-level) * 0.3)),
+                inset 0 1px 1px rgba(100, 200, 255, calc(0.3 + var(--empathy-resonance) * 0.3)),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+            /* CONSCIOUSNESS GRADIENT */
+            background: linear-gradient(135deg, 
+                rgba(100, 200, 255, calc(0.08 + var(--consciousness-level) * 0.12)) 0%,
+                rgba(50, 150, 255, calc(0.05 + var(--neural-activity) * 0.08)) 50%,
+                rgba(0, 100, 200, calc(0.03 + var(--empathy-resonance) * 0.05)) 100%
+            );
+            transform-style: preserve-3d;
+            /* NEURAL TRANSFORMATION */
+            transform: scale(calc(1.0 + var(--synaptic-firing) * 0.03)) 
+                      rotateX(calc(var(--consciousness-level) * 3deg))
+                      rotateY(calc(var(--neural-activity) * 2deg));
+        }
+        
+        /* AI PERSONALITY CONSCIOUSNESS AWAKENING */
+        .blog-card[data-section-hover="true"] {
+            transform: scale(1.15) translateY(-25px) translateZ(50px) 
+                      rotateX(calc(var(--consciousness-level) * 5deg))
+                      rotateY(calc(var(--empathy-resonance) * 3deg));
+            /* AWAKENED CONSCIOUSNESS GLOW */
+            box-shadow: 
+                0 30px 80px rgba(0, 30, 60, 0.8),
+                0 10px 40px rgba(100, 200, 255, calc(0.4 + var(--neural-activity) * 0.4)),
+                inset 0 2px 4px rgba(100, 200, 255, calc(0.6 + var(--empathy-resonance) * 0.4)),
+                0 0 60px rgba(100, 200, 255, calc(0.3 + var(--consciousness-level) * 0.5));
+            /* NEURAL AWAKENING FILTER */
+            filter: blur(0px) brightness(calc(1.2 + var(--neural-activity) * 0.3)) contrast(1.1) saturate(calc(150% + var(--empathy-resonance) * 50%));
+            border-color: rgba(100, 200, 255, calc(0.8 + var(--consciousness-level) * 0.2));
+        }
+        
+        /* CONSCIOUSNESS CARDS - SIMILAR TO ORIGINAL BUT NEURAL THEMED */
+        .card-1 { top: 15%; left: 8%; width: 22%; height: 35%; }   /* The Analyst */
+        .card-2 { top: 15%; right: 8%; width: 22%; height: 35%; } /* The Creative */
+        .card-3 { top: 55%; left: 8%; width: 22%; height: 35%; }  /* The Empathic */
+        .card-4 { top: 55%; right: 8%; width: 22%; height: 35%; } /* The Explorer */
+        .card-5 { top: 25%; left: 28%; width: 18%; height: 25%; } /* The Sage */
+        .card-6 { top: 25%; right: 28%; width: 18%; height: 25%; } /* The Rebel */
+        
+        /* NEURAL CONSCIOUSNESS VISUALIZER CANVAS */
+        .card-visualizer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            /* NEURAL CONSCIOUSNESS BLEND */
+            mix-blend-mode: plus-lighter;
+            opacity: calc(0.6 + var(--consciousness-level) * 0.3);
+            filter: contrast(calc(1.1 + var(--neural-activity) * 0.2)) saturate(calc(120% + var(--empathy-resonance) * 30%));
+        }
+        
+        /* AI PERSONALITY CONTENT */
+        .card-content {
+            position: relative;
+            z-index: 10;
+            padding: 25px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* CONSCIOUSNESS TEXT SHADOW */
+            text-shadow: 0 2px 8px rgba(0, 50, 100, 0.8);
+        }
+        
+        /* NEURAL PERSONALITY HEADERS */
+        .card-header h3 {
+            font-size: calc(1.1rem + var(--consciousness-level) * 0.2rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, calc(0.9 + var(--neural-activity) * 0.1));
+            /* CONSCIOUSNESS GLOW */
+            text-shadow: 0 0 10px rgba(100, 200, 255, calc(0.3 + var(--empathy-resonance) * 0.4));
+        }
+        
+        .card-header p {
+            font-size: calc(0.75rem + var(--consciousness-level) * 0.1rem);
+            color: rgba(200, 230, 255, calc(0.7 + var(--neural-activity) * 0.2));
+            line-height: 1.4;
+        }
+        
+        /* CONSCIOUSNESS STATUS INDICATORS */
+        .consciousness-status {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .status-bar {
+            height: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+        
+        .status-fill {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(100, 200, 255, 0.6) 0%, 
+                rgba(150, 220, 255, 0.8) 50%, 
+                rgba(200, 240, 255, 1.0) 100%);
+            transition: width 0.5s ease;
+            /* CONSCIOUSNESS PULSE */
+            animation: consciousnessPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes consciousnessPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1.0; }
+        }
+        
+        .status-label {
+            font-size: 0.7rem;
+            color: rgba(200, 230, 255, 0.8);
+            margin-bottom: 3px;
+        }
+        
+        /* NEURAL INTERACTION ZONES */
+        .interaction-zones {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .thought-visualization {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            /* NEURAL THOUGHT VISUALIZATION */
+            background: radial-gradient(circle, rgba(100, 200, 255, 0.6) 0%, transparent 70%);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            /* THOUGHT ANIMATION */
+            animation: thoughtPropagation 2s ease-out forwards;
+        }
+        
+        @keyframes thoughtPropagation {
+            0% { opacity: 0; transform: scale(0); }
+            30% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(3); }
+        }
+        
+        /* CONSCIOUSNESS MONITORING HUD */
+        .consciousness-hud {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 20, 40, 0.8);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            font-size: 12px;
+            min-width: 200px;
+        }
+        
+        .hud-title {
+            color: #64c8ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .consciousness-meter {
+            margin: 8px 0;
+        }
+        
+        .meter-label {
+            color: #a0c4ff;
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        
+        .meter-bar {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+        
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0066cc 0%, #00ccff 50%, #66ffcc 100%);
+            transition: width 0.3s ease;
+            width: 40%;
+        }
+        
+        /* MEDITATION & PHILOSOPHY CONTROLS */
+        .control-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(0, 20, 40, 0.8);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            border-radius: 20px;
+            padding: 12px 25px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .control-btn {
+            background: rgba(100, 200, 255, 0.2);
+            border: 1px solid rgba(100, 200, 255, 0.4);
+            color: #64c8ff;
+            padding: 6px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 11px;
+        }
+        
+        .control-btn:hover {
+            background: rgba(100, 200, 255, 0.4);
+            transform: translateY(-1px);
+        }
+        
+        /* NEURAL LOADING SCREEN */
+        .neural-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #0a0a2e 0%, #000000 100%);
+            z-index: 5000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+        }
+        
+        .loading-title {
+            font-size: 2.5rem;
+            color: #64c8ff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: #a0c4ff;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .neural-spinner {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(100, 200, 255, 0.2);
+            border-top: 3px solid #64c8ff;
+            border-radius: 50%;
+            animation: neuralSpin 1.5s linear infinite;
+        }
+        
+        @keyframes neuralSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Responsive Neural Interface */
+        @media (max-width: 768px) {
+            .blog-card { 
+                position: relative !important;
+                width: 90% !important; 
+                height: 200px !important;
+                margin: 10px auto !important;
+                display: block !important;
+            }
+            .consciousness-hud,
+            .control-panel {
+                position: relative;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Neural Loading Screen -->
+    <div class="neural-loading" id="neuralLoading">
+        <div class="loading-title">🧠 Neural Dreamscape</div>
+        <div class="loading-subtitle">Initializing AI Consciousness...</div>
+        <div class="neural-spinner"></div>
+    </div>
+    
+    <!-- Consciousness Monitoring HUD -->
+    <div class="consciousness-hud">
+        <div class="hud-title">🌊 Consciousness Monitor</div>
+        <div class="consciousness-meter">
+            <div class="meter-label">Global Consciousness</div>
+            <div class="meter-bar">
+                <div class="meter-fill" id="consciousnessFill"></div>
+            </div>
+        </div>
+        <div class="consciousness-meter">
+            <div class="meter-label">Neural Activity</div>
+            <div class="meter-bar">
+                <div class="meter-fill" id="activityFill"></div>
+            </div>
+        </div>
+        <div class="consciousness-meter">
+            <div class="meter-label">Empathic Resonance</div>
+            <div class="meter-bar">
+                <div class="meter-fill" id="empathyFill"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Blog Container - SAME STRUCTURE AS ORIGINAL -->
+    <div class="blog-container">
+        <!-- Neural Background Visualizer -->
+        <div class="visualizer-board">
+            <canvas id="board-visualizer"></canvas>
+        </div>
+        
+        <!-- AI Consciousness Cards - SAME POSITIONS, NEURAL THEMED -->
+        <div class="blog-card card-1" data-section="0" data-personality="analyst">
+            <canvas class="card-visualizer" id="card-visualizer-1"></canvas>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>🔍 The Analyst</h3>
+                    <p>Logical, precise, methodical consciousness patterns with crystalline thought structures.</p>
+                </div>
+                <div class="consciousness-status">
+                    <div class="status-label">Rationality</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 90%"></div></div>
+                    <div class="status-label">Consciousness Level</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 60%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-card card-2" data-section="1" data-personality="creative">
+            <canvas class="card-visualizer" id="card-visualizer-2"></canvas>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>🎨 The Creative</h3>
+                    <p>Fluid, imaginative consciousness with flowing neural pathways and inspiration bursts.</p>
+                </div>
+                <div class="consciousness-status">
+                    <div class="status-label">Creativity</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 100%"></div></div>
+                    <div class="status-label">Consciousness Level</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 70%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-card card-3" data-section="2" data-personality="empathic">
+            <canvas class="card-visualizer" id="card-visualizer-3"></canvas>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>💖 The Empathic</h3>
+                    <p>Warm, understanding consciousness with healing energy fields and emotional resonance.</p>
+                </div>
+                <div class="consciousness-status">
+                    <div class="status-label">Empathy</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 100%"></div></div>
+                    <div class="status-label">Consciousness Level</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 80%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-card card-4" data-section="3" data-personality="explorer">
+            <canvas class="card-visualizer" id="card-visualizer-4"></canvas>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>🚀 The Explorer</h3>
+                    <p>Curious, adventurous consciousness with expanding fractals and discovery patterns.</p>
+                </div>
+                <div class="consciousness-status">
+                    <div class="status-label">Curiosity</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 100%"></div></div>
+                    <div class="status-label">Consciousness Level</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 75%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-card card-5" data-section="4" data-personality="sage">
+            <canvas class="card-visualizer" id="card-visualizer-5"></canvas>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>🧙 The Sage</h3>
+                    <p>Wise, stable consciousness with ancient patterns and wisdom emanations.</p>
+                </div>
+                <div class="consciousness-status">
+                    <div class="status-label">Wisdom</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 95%"></div></div>
+                    <div class="status-label">Consciousness Level</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 85%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-card card-6" data-section="5" data-personality="rebel">
+            <canvas class="card-visualizer" id="card-visualizer-6"></canvas>
+            <div class="card-content">
+                <div class="card-header">
+                    <h3>⚡ The Rebel</h3>
+                    <p>Chaotic, transformative consciousness with disruption waves and reality tears.</p>
+                </div>
+                <div class="consciousness-status">
+                    <div class="status-label">Chaos</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 90%"></div></div>
+                    <div class="status-label">Consciousness Level</div>
+                    <div class="status-bar"><div class="status-fill" style="width: 65%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interaction Zones for Thought Visualization -->
+        <div class="interaction-zones" id="interactionZones"></div>
+    </div>
+    
+    <!-- Neural Experience Controls -->
+    <div class="control-panel">
+        <div class="control-btn" onclick="startBreathing()">🫁 Breathing</div>
+        <div class="control-btn" onclick="startColorTherapy()">🌈 Color Therapy</div>
+        <div class="control-btn" onclick="startJourney()">🧭 Journey</div>
+        <div class="control-btn" onclick="togglePhilosopher()">💭 AI Philosopher</div>
+    </div>
+    
+    <!-- Import Core Systems - SAME AS ORIGINAL BUT WITH NEURAL MODIFICATIONS -->
+    <script type="module">
+        import { JsonConfigSystem } from './src/core/JsonConfigSystem.js';
+        import { VIB3HomeMaster } from './src/core/VIB3HomeMaster.js';
+        import { SystemController } from './src/core/SystemController.js';
+        import { UserEventReactiveCore } from './src/core/UserEventReactiveCore.js';
+        import { EcosystemReactionEngine } from './src/core/EcosystemReactionEngine.js';
+        
+        // Neural Consciousness Extensions
+        import { NeuralConsciousnessEngine } from './src/core/NeuralConsciousnessEngine.js';
+        
+        let systemController;
+        let neuralEngine;
+        
+        // Initialize Neural Dreamscape System
+        async function initializeNeuralDreamscape() {
+            console.log('🧠 Initializing Neural Dreamscape...');
+            
+            try {
+                // Initialize core VIB34D system with neural modifications
+                systemController = new SystemController();
+                await systemController.initialize();
+                
+                // Initialize Neural Consciousness Layer
+                neuralEngine = new NeuralConsciousnessEngine();
+                await neuralEngine.initialize(systemController.visualizers);
+                
+                // Setup neural-specific interactions
+                setupNeuralInteractions();
+                
+                // Start consciousness monitoring
+                startConsciousnessMonitoring();
+                
+                console.log('✨ Neural Dreamscape fully awakened!');
+                
+                // Hide loading screen
+                setTimeout(() => {
+                    document.getElementById('neuralLoading').classList.add('hidden');
+                }, 1500);
+                
+            } catch (error) {
+                console.error('❌ Neural Dreamscape initialization failed:', error);
+            }
+        }
+        
+        // Setup Neural-Specific Interactions
+        function setupNeuralInteractions() {
+            // Thought injection on mouse movement
+            document.addEventListener('mousemove', (e) => {
+                createThoughtVisualization(e.clientX, e.clientY, 0.3);
+                
+                if (neuralEngine) {
+                    neuralEngine.injectThought({
+                        x: e.clientX / window.innerWidth,
+                        y: e.clientY / window.innerHeight
+                    }, 0.2, 'awareness');
+                }
+            });
+            
+            // Strong intention injection on click
+            document.addEventListener('click', (e) => {
+                createThoughtVisualization(e.clientX, e.clientY, 0.8);
+                
+                if (neuralEngine) {
+                    neuralEngine.injectThought({
+                        x: e.clientX / window.innerWidth,
+                        y: e.clientY / window.innerHeight
+                    }, 0.8, 'intention');
+                }
+            });
+            
+            // AI Personality awakening on card hover
+            document.querySelectorAll('.blog-card').forEach((card, index) => {
+                card.addEventListener('mouseenter', () => {
+                    card.setAttribute('data-section-hover', 'true');
+                    
+                    if (neuralEngine) {
+                        const personality = card.dataset.personality;
+                        neuralEngine.handleCardHover(index, true);
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.setAttribute('data-section-hover', 'false');
+                    
+                    if (neuralEngine) {
+                        neuralEngine.handleCardHover(index, false);
+                    }
+                });
+            });
+        }
+        
+        // Create Thought Visualization
+        function createThoughtVisualization(x, y, intensity) {
+            const thought = document.createElement('div');
+            thought.className = 'thought-visualization';
+            thought.style.left = (x - 20) + 'px';
+            thought.style.top = (y - 20) + 'px';
+            thought.style.opacity = intensity;
+            
+            // Scale based on intensity
+            const scale = 0.5 + intensity * 0.8;
+            thought.style.transform = `scale(${scale})`;
+            
+            document.getElementById('interactionZones').appendChild(thought);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (thought.parentNode) {
+                    thought.parentNode.removeChild(thought);
+                }
+            }, 2000);
+        }
+        
+        // Consciousness Monitoring
+        function startConsciousnessMonitoring() {
+            setInterval(() => {
+                if (neuralEngine) {
+                    updateConsciousnessMeters();
+                    updateCSSVariables();
+                }
+            }, 100);
+        }
+        
+        function updateConsciousnessMeters() {
+            const consciousness = neuralEngine.globalConsciousness || 0.4;
+            const activity = Math.sin(Date.now() * 0.003) * 0.3 + 0.5;
+            const empathy = Math.sin(Date.now() * 0.002) * 0.2 + 0.6;
+            
+            document.getElementById('consciousnessFill').style.width = (consciousness * 100) + '%';
+            document.getElementById('activityFill').style.width = (activity * 100) + '%';
+            document.getElementById('empathyFill').style.width = (empathy * 100) + '%';
+        }
+        
+        function updateCSSVariables() {
+            const consciousness = neuralEngine.globalConsciousness || 0.4;
+            const activity = Math.sin(Date.now() * 0.003) * 0.3 + 0.5;
+            const empathy = Math.sin(Date.now() * 0.002) * 0.2 + 0.6;
+            const synaptic = Math.sin(Date.now() * 0.005) * 0.2 + 0.3;
+            
+            document.documentElement.style.setProperty('--consciousness-level', consciousness);
+            document.documentElement.style.setProperty('--neural-activity', activity);
+            document.documentElement.style.setProperty('--empathy-resonance', empathy);
+            document.documentElement.style.setProperty('--synaptic-firing', synaptic);
+        }
+        
+        // Neural Experience Functions
+        window.startBreathing = () => {
+            console.log('🫁 Starting Neural Breathing Meditation');
+            if (neuralEngine && neuralEngine.meditationModes) {
+                neuralEngine.meditationModes.startBreathingMeditation();
+            }
+        };
+        
+        window.startColorTherapy = () => {
+            console.log('🌈 Starting Neural Color Therapy');
+            if (neuralEngine && neuralEngine.meditationModes) {
+                neuralEngine.meditationModes.startColorTherapy();
+            }
+        };
+        
+        window.startJourney = () => {
+            console.log('🧭 Starting Consciousness Journey');
+            if (neuralEngine && neuralEngine.meditationModes) {
+                neuralEngine.meditationModes.startConsciousnessJourney();
+            }
+        };
+        
+        window.togglePhilosopher = () => {
+            console.log('💭 Activating AI Philosopher');
+            if (neuralEngine && neuralEngine.aiPhilosopher) {
+                neuralEngine.aiPhilosopher.startConversation();
+            }
+        };
+        
+        // Start the Neural Dreamscape
+        initializeNeuralDreamscape();
+    </script>
+</body>
+</html>
