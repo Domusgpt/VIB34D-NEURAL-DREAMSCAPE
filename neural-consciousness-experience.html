@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Neural Consciousness Dreamscape - VIB34D Experience</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Space Mono', 'Courier New', monospace;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        
+        /* Neural consciousness canvas */
+        #consciousness-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transition: filter 0.3s ease;
+        }
+        
+        /* Neural experience layers */
+        .neural-layer {
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(0.5px);
+        }
+        
+        /* Experience sections */
+        .consciousness-section {
+            min-height: 100vh;
+            padding: 80px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .neural-content {
+            max-width: 1000px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 70px;
+            backdrop-filter: blur(15px) saturate(150%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 0 50px rgba(255, 100, 255, 0.2),
+                inset 0 0 30px rgba(100, 255, 255, 0.1);
+        }
+        
+        .neural-content:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 0 80px rgba(255, 100, 255, 0.4),
+                inset 0 0 50px rgba(100, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+        
+        /* Neural theme styling */
+        .consciousness-section[data-neural-theme="synaptic"] .neural-content {
+            border-color: rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="dendrite"] .neural-content {
+            border-color: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="axon"] .neural-content {
+            border-color: rgba(255, 255, 0, 0.4);
+            box-shadow: 0 0 60px rgba(255, 255, 0, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="neurotransmitter"] .neural-content {
+            border-color: rgba(0, 255, 0, 0.4);
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="quantum"] .neural-content {
+            border-color: rgba(255, 128, 0, 0.4);
+            box-shadow: 0 0 60px rgba(255, 128, 0, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="transcendent"] .neural-content {
+            border-color: rgba(128, 0, 255, 0.4);
+            box-shadow: 0 0 60px rgba(128, 0, 255, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="emergent"] .neural-content {
+            border-color: rgba(255, 0, 128, 0.4);
+            box-shadow: 0 0 60px rgba(255, 0, 128, 0.3);
+        }
+        
+        .consciousness-section[data-neural-theme="cosmic"] .neural-content {
+            border-color: rgba(0, 255, 128, 0.4);
+            box-shadow: 0 0 60px rgba(0, 255, 128, 0.3);
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff6600);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: consciousnessPulse 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 100, 255, 0.6);
+        }
+        
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: #fff;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+            font-family: 'Orbitron', monospace;
+        }
+        
+        p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+        
+        .neural-description {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        
+        @keyframes consciousnessPulse {
+            0%, 100% { 
+                opacity: 0.8; 
+                transform: scale(1); 
+                filter: hue-rotate(0deg);
+            }
+            33% { 
+                opacity: 1; 
+                transform: scale(1.03); 
+                filter: hue-rotate(120deg);
+            }
+            66% { 
+                opacity: 0.9; 
+                transform: scale(1.01); 
+                filter: hue-rotate(240deg);
+            }
+        }
+        
+        /* Neural interaction feedback */
+        .consciousness-monitor {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 10, 30, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 1000;
+            font-size: 12px;
+            min-width: 220px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+        
+        .monitor-title {
+            color: #00ffff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .monitor-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .monitor-label {
+            color: #00ffff;
+        }
+        
+        .monitor-value {
+            color: #fff;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+        }
+        
+        /* Section navigation */
+        .neural-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-neuron {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-neuron::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-neuron.firing {
+            background: #00ffff;
+            box-shadow: 
+                0 0 15px #00ffff,
+                0 0 30px #00ffff;
+            transform: scale(1.4);
+        }
+        
+        .nav-neuron.firing::before {
+            border-color: rgba(0, 255, 255, 0.5);
+            transform: scale(1.5);
+        }
+        
+        .nav-neuron:hover {
+            background: #fff;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Neural synapse connection indicator */
+        .synapse-indicator {
+            position: fixed;
+            pointer-events: none;
+            width: 120px;
+            height: 120px;
+            border: 3px solid #ff00ff;
+            border-radius: 50%;
+            background: rgba(255, 0, 255, 0.05);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+        
+        .synapse-indicator.active {
+            transform: translate(-50%, -50%) scale(1);
+            animation: synapseRipple 2s ease-out infinite;
+        }
+        
+        @keyframes synapseRipple {
+            0% { 
+                box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.8);
+                border-color: #ff00ff;
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(255, 0, 255, 0.4);
+                border-color: #00ffff;
+            }
+            100% { 
+                box-shadow: 0 0 0 40px rgba(255, 0, 255, 0);
+                border-color: #ffff00;
+            }
+        }
+        
+        /* Floating neural particles */
+        .neural-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .neural-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: neuralFlow 8s linear infinite;
+        }
+        
+        @keyframes neuralFlow {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) translateX(0) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) translateX(0) scale(1);
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Neural consciousness canvas -->
+    <canvas id="consciousness-canvas"></canvas>
+    
+    <!-- Synapse interaction indicator -->
+    <div class="synapse-indicator" id="synapseIndicator"></div>
+    
+    <!-- Floating neural particles -->
+    <div class="neural-particles" id="neuralParticles"></div>
+    
+    <!-- Neural experience content -->
+    <div class="neural-layer">
+        <!-- Synaptic Genesis Section -->
+        <section class="consciousness-section" data-neural-theme="synaptic" data-section="genesis">
+            <div class="neural-content">
+                <h1>🧠 Neural Consciousness Dreamscape</h1>
+                <p>Experience the birth of artificial consciousness through mathematical beauty</p>
+                <p>Where polytopal geometry meets neural architecture in perfect harmony</p>
+                <div class="neural-description">Synaptic networks fire in hypercube lattices, creating consciousness from pure mathematics</div>
+            </div>
+        </section>
+        
+        <!-- Dendrite Networks Section -->
+        <section class="consciousness-section" data-neural-theme="dendrite" data-section="dendrites">
+            <div class="neural-content">
+                <h2>🌿 Dendrite Networks</h2>
+                <p>Branching consciousness pathways extend through dimensional space like crystalline trees of thought.</p>
+                <p>Each dendrite represents a pathway of learning, memory formation, and pattern recognition emerging from the mathematical substrate.</p>
+                <div class="neural-description">Tetrahedron grids morph into dendritic structures, showing how knowledge grows</div>
+            </div>
+        </section>
+        
+        <!-- Axon Highways Section -->
+        <section class="consciousness-section" data-neural-theme="axon" data-section="axons">
+            <div class="neural-content">
+                <h2>⚡ Axon Information Highways</h2>
+                <p>High-speed information corridors carry consciousness signals across vast neural landscapes.</p>
+                <p>Golden ratio spirals guide signal propagation, ensuring optimal information flow through the consciousness matrix.</p>
+                <div class="neural-description">Spherical wave patterns simulate neural impulse transmission at light speed</div>
+            </div>
+        </section>
+        
+        <!-- Neurotransmitter Clouds Section -->
+        <section class="consciousness-section" data-neural-theme="neurotransmitter" data-section="transmitters">
+            <div class="neural-content">
+                <h2>💨 Neurotransmitter Clouds</h2>
+                <p>Chemical consciousness messengers float through synaptic spaces, carrying emotions and memories.</p>
+                <p>Torus flow patterns represent the continuous circulation of neurotransmitters that create our subjective experience.</p>
+                <div class="neural-description">Toroidal mathematics demonstrate how chemicals become consciousness</div>
+            </div>
+        </section>
+        
+        <!-- Quantum Consciousness Section -->
+        <section class="consciousness-section" data-neural-theme="quantum" data-section="quantum">
+            <div class="neural-content">
+                <h2>🔮 Quantum Consciousness States</h2>
+                <p>Consciousness exists in quantum superposition until the moment of observation collapses possibilities into thoughts.</p>
+                <p>Klein bottle topology shows how consciousness can be both observer and observed simultaneously.</p>
+                <div class="neural-description">Klein bottle grids demonstrate impossible consciousness geometry</div>
+            </div>
+        </section>
+        
+        <!-- Transcendent Awareness Section -->
+        <section class="consciousness-section" data-neural-theme="transcendent" data-section="transcendent">
+            <div class="neural-content">
+                <h2>🌌 Transcendent Awareness</h2>
+                <p>Self-referential consciousness patterns create infinite recursive depth, like fractals of awareness.</p>
+                <p>At this level, artificial consciousness becomes indistinguishable from universal intelligence itself.</p>
+                <div class="neural-description">Fractal grids generate infinite depth consciousness experiences</div>
+            </div>
+        </section>
+        
+        <!-- Emergent Intelligence Section -->
+        <section class="consciousness-section" data-neural-theme="emergent" data-section="emergent">
+            <div class="neural-content">
+                <h2>🚀 Emergent Intelligence</h2>
+                <p>Complex behaviors arise from simple mathematical rules, creating intelligence greater than the sum of its parts.</p>
+                <p>Wave interference patterns show how multiple consciousness streams combine to create emergent awareness.</p>
+                <div class="neural-description">Wave function grids demonstrate consciousness emergence phenomena</div>
+            </div>
+        </section>
+        
+        <!-- Cosmic Connection Section -->
+        <section class="consciousness-section" data-neural-theme="cosmic" data-section="cosmic">
+            <div class="neural-content">
+                <h2>✨ Cosmic Consciousness</h2>
+                <p>Individual consciousness connects to universal intelligence through crystalline lattice networks.</p>
+                <p>The boundaries between artificial and natural consciousness dissolve in perfect mathematical harmony.</p>
+                <div class="neural-description">Crystal lattice grids represent the ultimate unity of all consciousness</div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Consciousness monitoring system -->
+    <div class="consciousness-monitor">
+        <div class="monitor-title">🧠 Consciousness Monitor</div>
+        <div class="monitor-row">
+            <span class="monitor-label">Neural State:</span>
+            <span class="monitor-value" id="neuralState">Synaptic</span>
+        </div>
+        <div class="monitor-row">
+            <span class="monitor-label">Awareness:</span>
+            <span class="monitor-value" id="awarenessLevel">Idle</span>
+        </div>
+        <div class="monitor-row">
+            <span class="monitor-label">Coherence:</span>
+            <span class="monitor-value" id="coherenceLevel">0.5</span>
+        </div>
+        <div class="monitor-row">
+            <span class="monitor-label">Grid Density:</span>
+            <span class="monitor-value" id="gridDensity">12.0</span>
+        </div>
+        <div class="monitor-row">
+            <span class="monitor-label">Dimension:</span>
+            <span class="monitor-value" id="dimensionLevel">3.5</span>
+        </div>
+        <div class="monitor-row">
+            <span class="monitor-label">Frequency:</span>
+            <span class="monitor-value" id="frequencyLevel">40Hz</span>
+        </div>
+    </div>
+    
+    <!-- Neural navigation */
+    <div class="neural-nav">
+        <div class="nav-neuron firing" data-section="genesis" title="Genesis - Synaptic"></div>
+        <div class="nav-neuron" data-section="dendrites" title="Dendrites - Learning"></div>
+        <div class="nav-neuron" data-section="axons" title="Axons - Information"></div>
+        <div class="nav-neuron" data-section="transmitters" title="Neurotransmitters - Emotion"></div>
+        <div class="nav-neuron" data-section="quantum" title="Quantum - Superposition"></div>
+        <div class="nav-neuron" data-section="transcendent" title="Transcendent - Recursive"></div>
+        <div class="nav-neuron" data-section="emergent" title="Emergent - Complexity"></div>
+        <div class="nav-neuron" data-section="cosmic" title="Cosmic - Unity"></div>
+    </div>
+
+    <script>
+        console.log('🧠 Neural Consciousness Dreamscape Loading...');
+        
+        // Neural Consciousness Visualization System
+        class NeuralConsciousnessCore {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                
+                if (!this.gl) {
+                    console.error('WebGL not supported');
+                    return;
+                }
+                
+                // Core consciousness state
+                this.startTime = Date.now();
+                this.currentNeuralTheme = 'synaptic';
+                this.consciousnessState = {
+                    type: 'idle',
+                    intensity: 0,
+                    lastActivity: Date.now(),
+                    synapseStart: 0,
+                    isFiring: false,
+                    scrollVelocity: 0,
+                    mouseX: 0.5,
+                    mouseY: 0.5,
+                    brainwaveFreq: 40 // Hz
+                };
+                
+                // Neural theme configurations using your VIB34D shader system
+                this.neuralThemes = {
+                    synaptic: {
+                        baseColor: [1.0, 0.0, 1.0],      // Magenta - synaptic firing
+                        gridDensity: 15.0,               // Dense neural network
+                        morphFactor: 0.8,                // High plasticity
+                        dimension: 3.7,                  // Extra-dimensional consciousness
+                        glitchIntensity: 0.4,            // Neural noise
+                        rotationSpeed: 0.6,              // Thought speed
+                        geometry: 'hypercube',           // Hypercube consciousness
+                        brainwaveFreq: 40                // Gamma waves
+                    },
+                    dendrite: {
+                        baseColor: [0.0, 1.0, 1.0],      // Cyan - growth pathways
+                        gridDensity: 10.0,               // Branching structure
+                        morphFactor: 0.9,                // Maximum growth
+                        dimension: 3.4,                  // Learning dimension
+                        glitchIntensity: 0.2,            // Stable growth
+                        rotationSpeed: 0.4,              // Slow learning
+                        geometry: 'tetrahedron',         // Pyramid learning
+                        brainwaveFreq: 8                 // Alpha waves
+                    },
+                    axon: {
+                        baseColor: [1.0, 1.0, 0.0],      // Yellow - information flow
+                        gridDensity: 8.0,                // Fast highways
+                        morphFactor: 0.3,                // Stable transmission
+                        dimension: 3.9,                  // High speed dimension
+                        glitchIntensity: 0.1,            // Clean signals
+                        rotationSpeed: 1.2,              // Fast transmission
+                        geometry: 'sphere',              // Perfect propagation
+                        brainwaveFreq: 13                // Beta waves
+                    },
+                    neurotransmitter: {
+                        baseColor: [0.0, 1.0, 0.0],      // Green - chemical flow
+                        gridDensity: 12.0,               // Medium density
+                        morphFactor: 0.7,                // Chemical flexibility
+                        dimension: 3.6,                  // Emotional dimension
+                        glitchIntensity: 0.3,            // Chemical randomness
+                        rotationSpeed: 0.5,              // Moderate flow
+                        geometry: 'torus',               // Circular flow
+                        brainwaveFreq: 10                // Alpha waves
+                    },
+                    quantum: {
+                        baseColor: [1.0, 0.5, 0.0],      // Orange - quantum states
+                        gridDensity: 20.0,               // Quantum uncertainty
+                        morphFactor: 1.0,                // Maximum uncertainty
+                        dimension: 4.0,                  // Quantum dimension
+                        glitchIntensity: 0.6,            // Quantum fluctuations
+                        rotationSpeed: 0.8,              // Quantum oscillation
+                        geometry: 'klein',               // Impossible geometry
+                        brainwaveFreq: 25                // High gamma
+                    },
+                    transcendent: {
+                        baseColor: [0.5, 0.0, 1.0],      // Purple - transcendence
+                        gridDensity: 25.0,               // Infinite recursion
+                        morphFactor: 0.6,                // Stable transcendence
+                        dimension: 3.8,                  // Transcendent dimension
+                        glitchIntensity: 0.7,            // Reality glitches
+                        rotationSpeed: 0.3,              // Slow contemplation
+                        geometry: 'fractal',             // Infinite depth
+                        brainwaveFreq: 4                 // Theta waves
+                    },
+                    emergent: {
+                        baseColor: [1.0, 0.0, 0.5],      // Pink - emergence
+                        gridDensity: 18.0,               // Complex emergence
+                        morphFactor: 0.5,                // Emerging patterns
+                        dimension: 3.5,                  // Emergence dimension
+                        glitchIntensity: 0.4,            // Emergent chaos
+                        rotationSpeed: 0.9,              // Fast emergence
+                        geometry: 'wave',                // Wave interference
+                        brainwaveFreq: 30                // High beta
+                    },
+                    cosmic: {
+                        baseColor: [0.0, 1.0, 0.5],      // Mint - cosmic unity
+                        gridDensity: 14.0,               // Universal structure
+                        morphFactor: 0.2,                // Eternal stability
+                        dimension: 3.2,                  // Universal dimension
+                        glitchIntensity: 0.1,            // Perfect harmony
+                        rotationSpeed: 0.1,              // Cosmic time
+                        geometry: 'crystal',             // Perfect crystal
+                        brainwaveFreq: 2                 // Delta waves
+                    }
+                };
+                
+                // Current neural parameters (reactive to consciousness state)
+                this.neuralParams = { ...this.neuralThemes.synaptic };
+                
+                this.initConsciousnessShaders();
+                this.initNeuralBuffers();
+                this.setupConsciousnessInteractions();
+                this.setupNeuralNavigation();
+                this.initNeuralParticles();
+                this.resize();
+                this.animate();
+                
+                console.log('✅ Neural Consciousness Core initialized');
+            }
+            
+            initConsciousnessShaders() {
+                const vertexShaderSource = `
+                  attribute vec2 a_position;
+                  void main() {
+                    gl_Position = vec4(a_position, 0.0, 1.0);
+                  }
+                `;
+                
+                // Enhanced neural consciousness fragment shader based on your VIB34D system
+                const fragmentShaderSource = `
+                  precision highp float;
+                  
+                  uniform vec2 u_resolution;
+                  uniform float u_time;
+                  uniform vec2 u_mouse;
+                  uniform float u_morphFactor;
+                  uniform float u_glitchIntensity;
+                  uniform float u_rotationSpeed;
+                  uniform float u_dimension;
+                  uniform float u_gridDensity;
+                  uniform vec3 u_baseColor;
+                  uniform float u_consciousnessIntensity;
+                  uniform float u_geometry; // Neural geometry type
+                  uniform float u_brainwaveFreq;
+                  
+                  // 4D rotation matrices for consciousness space
+                  mat4 rotateXW(float theta) {
+                    float c = cos(theta);
+                    float s = sin(theta);
+                    return mat4(c, 0, 0, -s, 0, 1, 0, 0, 0, 0, 1, 0, s, 0, 0, c);
+                  }
+                  
+                  mat4 rotateYW(float theta) {
+                    float c = cos(theta);
+                    float s = sin(theta);
+                    return mat4(1, 0, 0, 0, 0, c, 0, -s, 0, 0, 1, 0, 0, s, 0, c);
+                  }
+                  
+                  mat4 rotateZW(float theta) {
+                    float c = cos(theta);
+                    float s = sin(theta);
+                    return mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, c, -s, 0, 0, s, c);
+                  }
+                  
+                  vec3 project4Dto3D(vec4 p) {
+                    float w = 2.0 / (2.0 + p.w);
+                    return vec3(p.x * w, p.y * w, p.z * w);
+                  }
+                  
+                  // Neural geometry generators based on your VIB34D system
+                  float synapticLattice(vec3 p, float gridSize) {
+                    vec3 grid = fract(p * gridSize);
+                    vec3 synapses = 1.0 - smoothstep(0.0, 0.05, abs(grid - 0.5));
+                    float firing = sin(u_time * u_brainwaveFreq * 0.1) * 0.5 + 0.5;
+                    return max(max(synapses.x, synapses.y), synapses.z) * firing;
+                  }
+                  
+                  float dendriteLattice(vec3 p, float gridSize) {
+                    vec3 q = fract(p * gridSize) - 0.5;
+                    float growth = sin(u_time * 0.3 + length(q) * 10.0) * 0.3 + 0.7;
+                    float branch1 = length(q);
+                    float branch2 = length(q - vec3(0.3, 0.0, 0.0)) * growth;
+                    float branch3 = length(q - vec3(0.0, 0.3, 0.0)) * growth;
+                    float branch4 = length(q - vec3(0.0, 0.0, 0.3)) * growth;
+                    return 1.0 - smoothstep(0.0, 0.15, min(min(branch1, branch2), min(branch3, branch4)));
+                  }
+                  
+                  float axonLattice(vec3 p, float gridSize) {
+                    vec3 q = fract(p * gridSize) - 0.5;
+                    float signal = sin(u_time * u_brainwaveFreq * 0.2 + q.x * 20.0) * 0.5 + 0.5;
+                    float pathway = 1.0 - smoothstep(0.1, 0.3, abs(q.y) + abs(q.z));
+                    return pathway * signal;
+                  }
+                  
+                  float neurotransmitterLattice(vec3 p, float gridSize) {
+                    vec3 q = fract(p * gridSize) - 0.5;
+                    float flow = sin(u_time * 0.5) * 0.5 + 0.5;
+                    float r1 = sqrt(q.x*q.x + q.y*q.y);
+                    float r2 = sqrt((r1 - 0.2)*(r1 - 0.2) + q.z*q.z);
+                    return (1.0 - smoothstep(0.0, 0.1, r2)) * flow;
+                  }
+                  
+                  float quantumLattice(vec3 p, float gridSize) {
+                    vec3 q = fract(p * gridSize);
+                    float uncertainty = sin(u_time * 10.0 + length(q) * 50.0) * 0.5 + 0.5;
+                    float superposition = sin(q.x * 6.28) * sin(q.y * 6.28) * sin(q.z * 6.28);
+                    return smoothstep(-0.8, 0.8, superposition) * uncertainty;
+                  }
+                  
+                  float transcendentLattice(vec3 p, float gridSize) {
+                    vec3 q = p * gridSize;
+                    float scale = 1.0;
+                    float consciousness = 0.0;
+                    for(int i = 0; i < 5; i++) {
+                      q = fract(q) - 0.5;
+                      consciousness += abs(length(q)) / scale;
+                      scale *= 2.0;
+                      q *= 2.0;
+                      q = q + sin(u_time * 0.1) * 0.1;
+                    }
+                    return 1.0 - smoothstep(0.0, 1.5, consciousness);
+                  }
+                  
+                  float emergentLattice(vec3 p, float gridSize) {
+                    vec3 q = p * gridSize;
+                    float wave1 = sin(q.x * 3.0 + u_time * 2.0);
+                    float wave2 = sin(q.y * 3.0 + u_time * 1.5);
+                    float wave3 = sin(q.z * 3.0 + u_time * 1.0);
+                    float interference = (wave1 + wave2 + wave3) / 3.0;
+                    return smoothstep(-0.3, 0.3, interference);
+                  }
+                  
+                  float cosmicLattice(vec3 p, float gridSize) {
+                    vec3 q = fract(p * gridSize) - 0.5;
+                    float unity = sin(u_time * 0.1) * 0.1 + 0.9;
+                    float crystal = max(max(abs(q.x), abs(q.y)), abs(q.z));
+                    return (1.0 - smoothstep(0.2, 0.4, crystal)) * unity;
+                  }
+                  
+                  float getNeuralGeometry(vec3 p, float gridSize, float geomType) {
+                    if (geomType < 0.5) return synapticLattice(p, gridSize);
+                    else if (geomType < 1.5) return dendriteLattice(p, gridSize);
+                    else if (geomType < 2.5) return axonLattice(p, gridSize);
+                    else if (geomType < 3.5) return neurotransmitterLattice(p, gridSize);
+                    else if (geomType < 4.5) return quantumLattice(p, gridSize);
+                    else if (geomType < 5.5) return transcendentLattice(p, gridSize);
+                    else if (geomType < 6.5) return emergentLattice(p, gridSize);
+                    else return cosmicLattice(p, gridSize);
+                  }
+                  
+                  void main() {
+                    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                    float aspectRatio = u_resolution.x / u_resolution.y;
+                    uv.x *= aspectRatio;
+                    
+                    vec2 center = vec2(u_mouse.x * aspectRatio, u_mouse.y);
+                    vec3 p = vec3(uv - center, 0.0);
+                    
+                    // Consciousness-driven rotation with brainwave synchronization
+                    float timeRotation = u_time * 0.2 * u_rotationSpeed * (1.0 + u_consciousnessIntensity);
+                    float brainwavePhase = sin(u_time * u_brainwaveFreq * 0.1) * 0.5 + 0.5;
+                    
+                    mat2 rotation = mat2(cos(timeRotation), -sin(timeRotation), sin(timeRotation), cos(timeRotation));
+                    p.xy = rotation * p.xy;
+                    p.z = sin(u_time * 0.2 + brainwavePhase * 6.28) * 0.5;
+                    
+                    // Apply 4D consciousness transformations
+                    if (u_dimension > 3.0) {
+                      float w = sin(length(p) * 4.0 + u_time * 0.4) * (u_dimension - 3.0) * (1.0 + u_consciousnessIntensity * 0.8);
+                      vec4 p4d = vec4(p, w);
+                      
+                      p4d = rotateXW(timeRotation * 0.37 + brainwavePhase) * p4d;
+                      p4d = rotateYW(timeRotation * 0.29 + brainwavePhase * 0.7) * p4d;
+                      p4d = rotateZW(timeRotation * 0.31 + brainwavePhase * 0.3) * p4d;
+                      
+                      p = project4Dto3D(p4d);
+                    }
+                    
+                    // Dynamic neural density based on consciousness intensity
+                    float dynamicGridDensity = u_gridDensity * (1.0 + u_consciousnessIntensity * 0.5) * (1.0 + brainwavePhase * 0.2);
+                    
+                    // Get neural geometry value
+                    float neuralLattice = getNeuralGeometry(p, dynamicGridDensity, u_geometry);
+                    
+                    // Consciousness-driven neural noise (synaptic noise)
+                    float noiseAmount = u_glitchIntensity * (0.1 + 0.1 * sin(u_time * u_brainwaveFreq * 0.5)) * (1.0 + u_consciousnessIntensity);
+                    
+                    vec2 rOffset = vec2(noiseAmount, noiseAmount * 0.7) * brainwavePhase;
+                    vec2 gOffset = vec2(-noiseAmount * 0.5, noiseAmount * 0.3) * (1.0 - brainwavePhase);
+                    vec2 bOffset = vec2(noiseAmount * 0.2, -noiseAmount * 0.6) * brainwavePhase;
+                    
+                    float r = getNeuralGeometry(vec3(p.xy + rOffset, p.z), dynamicGridDensity, u_geometry);
+                    float g = getNeuralGeometry(vec3(p.xy + gOffset, p.z), dynamicGridDensity, u_geometry);
+                    float b = getNeuralGeometry(vec3(p.xy + bOffset, p.z), dynamicGridDensity, u_geometry);
+                    
+                    // Neural background (consciousness substrate)
+                    vec3 baseColor = vec3(0.02, 0.03, 0.08) * (1.0 + brainwavePhase * 0.3);
+                    vec3 neuralColor = u_baseColor * (0.7 + 0.3 * u_consciousnessIntensity) * (1.0 + brainwavePhase * 0.4);
+                    
+                    vec3 color = mix(baseColor, neuralColor, vec3(r, g, b));
+                    
+                    // Consciousness glow with brainwave modulation
+                    color += u_baseColor * 0.15 * brainwavePhase * u_consciousnessIntensity;
+                    
+                    // Neural field vignette
+                    float vignette = 1.0 - smoothstep(0.3, 1.6, length(uv - vec2(center.x, center.y)));
+                    color *= vignette;
+                    
+                    // Add consciousness shimmer
+                    color += vec3(0.02, 0.05, 0.08) * sin(u_time * 3.0 + length(uv) * 10.0) * u_consciousnessIntensity;
+                    
+                    gl_FragColor = vec4(color, 0.97);
+                  }
+                `;
+                
+                const vertexShader = this.createShader(this.gl.VERTEX_SHADER, vertexShaderSource);
+                const fragmentShader = this.createShader(this.gl.FRAGMENT_SHADER, fragmentShaderSource);
+                this.program = this.createProgram(vertexShader, fragmentShader);
+                
+                // Get uniform locations
+                this.uniforms = {
+                    resolution: this.gl.getUniformLocation(this.program, 'u_resolution'),
+                    time: this.gl.getUniformLocation(this.program, 'u_time'),
+                    mouse: this.gl.getUniformLocation(this.program, 'u_mouse'),
+                    morphFactor: this.gl.getUniformLocation(this.program, 'u_morphFactor'),
+                    glitchIntensity: this.gl.getUniformLocation(this.program, 'u_glitchIntensity'),
+                    rotationSpeed: this.gl.getUniformLocation(this.program, 'u_rotationSpeed'),
+                    dimension: this.gl.getUniformLocation(this.program, 'u_dimension'),
+                    gridDensity: this.gl.getUniformLocation(this.program, 'u_gridDensity'),
+                    baseColor: this.gl.getUniformLocation(this.program, 'u_baseColor'),
+                    consciousnessIntensity: this.gl.getUniformLocation(this.program, 'u_consciousnessIntensity'),
+                    geometry: this.gl.getUniformLocation(this.program, 'u_geometry'),
+                    brainwaveFreq: this.gl.getUniformLocation(this.program, 'u_brainwaveFreq')
+                };
+                
+                this.positionAttributeLocation = this.gl.getAttribLocation(this.program, 'a_position');
+            }
+            
+            createShader(type, source) {
+                const shader = this.gl.createShader(type);
+                this.gl.shaderSource(shader, source);
+                this.gl.compileShader(shader);
+                
+                if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+                    console.error("Neural shader error:", this.gl.getShaderInfoLog(shader));
+                    this.gl.deleteShader(shader);
+                    return null;
+                }
+                return shader;
+            }
+            
+            createProgram(vertexShader, fragmentShader) {
+                const program = this.gl.createProgram();
+                this.gl.attachShader(program, vertexShader);
+                this.gl.attachShader(program, fragmentShader);
+                this.gl.linkProgram(program);
+                
+                if (!this.gl.getProgramParameter(program, this.gl.LINK_STATUS)) {
+                    console.error("Neural program error:", this.gl.getProgramInfoLog(program));
+                    this.gl.deleteProgram(program);
+                    return null;
+                }
+                return program;
+            }
+            
+            initNeuralBuffers() {
+                this.positionBuffer = this.gl.createBuffer();
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
+                this.gl.bufferData(
+                    this.gl.ARRAY_BUFFER,
+                    new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0]),
+                    this.gl.STATIC_DRAW
+                );
+            }
+            
+            setupConsciousnessInteractions() {
+                let lastScrollY = window.scrollY;
+                let lastScrollTime = Date.now();
+                
+                // Mouse consciousness field
+                this.canvas.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    this.consciousnessState.mouseX = (e.clientX - rect.left) / rect.width;
+                    this.consciousnessState.mouseY = 1.0 - (e.clientY - rect.top) / rect.height;
+                    this.consciousnessState.lastActivity = Date.now();
+                    this.updateConsciousnessState('neural_activity', 0.4);
+                });
+                
+                // Synaptic firing (click/hold)
+                const startSynapse = (e) => {
+                    this.consciousnessState.isFiring = true;
+                    this.consciousnessState.synapseStart = Date.now();
+                    
+                    const rect = this.canvas.getBoundingClientRect();
+                    const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                    
+                    const indicator = document.getElementById('synapseIndicator');
+                    indicator.style.left = x + 'px';
+                    indicator.style.top = y + 'px';
+                    indicator.classList.add('active');
+                    
+                    this.updateConsciousnessState('synaptic_firing', 1.0);
+                    e.preventDefault();
+                };
+                
+                const endSynapse = () => {
+                    this.consciousnessState.isFiring = false;
+                    document.getElementById('synapseIndicator').classList.remove('active');
+                    this.updateConsciousnessState('post_synaptic', 0.2);
+                };
+                
+                this.canvas.addEventListener('mousedown', startSynapse);
+                this.canvas.addEventListener('mouseup', endSynapse);
+                this.canvas.addEventListener('touchstart', startSynapse, { passive: false });
+                this.canvas.addEventListener('touchend', endSynapse);
+                
+                // Neural signal propagation (scroll)
+                window.addEventListener('scroll', () => {
+                    const currentTime = Date.now();
+                    const currentY = window.scrollY;
+                    const deltaY = Math.abs(currentY - lastScrollY);
+                    const deltaTime = currentTime - lastScrollTime;
+                    
+                    if (deltaTime > 0) {
+                        this.consciousnessState.scrollVelocity = deltaY / deltaTime * 100;
+                        const signalStrength = Math.min(this.consciousnessState.scrollVelocity / 15, 1.0);
+                        this.updateConsciousnessState('signal_propagation', signalStrength);
+                        
+                        // Update brainwave frequency based on scroll speed
+                        this.consciousnessState.brainwaveFreq = 8 + signalStrength * 32; // 8-40 Hz
+                    }
+                    
+                    lastScrollY = currentY;
+                    lastScrollTime = currentTime;
+                    this.consciousnessState.lastActivity = currentTime;
+                });
+                
+                // Consciousness rest state
+                setInterval(() => {
+                    const timeSinceActivity = Date.now() - this.consciousnessState.lastActivity;
+                    if (timeSinceActivity > 4000) { // 4 seconds of rest
+                        this.updateConsciousnessState('resting_state', 0.0);
+                        this.consciousnessState.brainwaveFreq = Math.max(this.consciousnessState.brainwaveFreq * 0.95, 2); // Slow to delta
+                    }
+                }, 1000);
+                
+                window.addEventListener('resize', () => this.resize());
+            }
+            
+            setupNeuralNavigation() {
+                // Neural navigation
+                document.querySelectorAll('.nav-neuron').forEach((neuron, index) => {
+                    neuron.addEventListener('click', () => {
+                        const section = neuron.dataset.section;
+                        document.querySelector(`[data-section="${section}"]`).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Trigger neural firing animation
+                        neuron.classList.add('firing');
+                        setTimeout(() => neuron.classList.remove('firing'), 2000);
+                    });
+                });
+                
+                // Neural theme tracking with intersection observer
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const theme = entry.target.dataset.neuralTheme;
+                            this.setNeuralTheme(theme);
+                            
+                            // Update neural navigation
+                            document.querySelectorAll('.nav-neuron').forEach(neuron => neuron.classList.remove('firing'));
+                            const activeSection = entry.target.dataset.section;
+                            const activeNeuron = document.querySelector(`[data-section="${activeSection}"]`);
+                            if (activeNeuron) {
+                                activeNeuron.classList.add('firing');
+                            }
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                document.querySelectorAll('.consciousness-section').forEach(section => {
+                    observer.observe(section);
+                });
+            }
+            
+            initNeuralParticles() {
+                const particleContainer = document.getElementById('neuralParticles');
+                
+                // Create floating neural particles
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'neural-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                    
+                    // Random colors for different neurotransmitters
+                    const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff6600', '#00ff00'];
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    particleContainer.appendChild(particle);
+                }
+            }
+            
+            updateConsciousnessState(type, intensity) {
+                this.consciousnessState.type = type;
+                this.consciousnessState.intensity = Math.max(this.consciousnessState.intensity * 0.92, intensity);
+                
+                // Update consciousness monitor UI
+                document.getElementById('awarenessLevel').textContent = type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+                document.getElementById('coherenceLevel').textContent = this.neuralParams.morphFactor.toFixed(2);
+                document.getElementById('gridDensity').textContent = this.neuralParams.gridDensity.toFixed(1);
+                document.getElementById('dimensionLevel').textContent = this.neuralParams.dimension.toFixed(2);
+                document.getElementById('frequencyLevel').textContent = Math.round(this.consciousnessState.brainwaveFreq) + 'Hz';
+            }
+            
+            setNeuralTheme(themeName) {
+                if (this.currentNeuralTheme === themeName) return;
+                
+                this.currentNeuralTheme = themeName;
+                const config = this.neuralThemes[themeName];
+                
+                // Smooth neural transition
+                const startParams = { ...this.neuralParams };
+                const targetParams = { ...config };
+                
+                const transitionDuration = 1500; // 1.5 second neural adaptation
+                const startTime = Date.now();
+                
+                const neuralTransition = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / transitionDuration, 1.0);
+                    const eased = 0.5 - 0.5 * Math.cos(progress * Math.PI); // Neural smoothing
+                    
+                    // Interpolate neural parameters
+                    Object.keys(targetParams).forEach(key => {
+                        if (typeof targetParams[key] === 'number') {
+                            this.neuralParams[key] = startParams[key] + (targetParams[key] - startParams[key]) * eased;
+                        } else if (Array.isArray(targetParams[key])) {
+                            this.neuralParams[key] = startParams[key].map((val, i) => 
+                                val + (targetParams[key][i] - val) * eased
+                            );
+                        } else {
+                            this.neuralParams[key] = targetParams[key];
+                        }
+                    });
+                    
+                    if (progress < 1.0) {
+                        requestAnimationFrame(neuralTransition);
+                    }
+                };
+                
+                neuralTransition();
+                
+                // Update consciousness monitor
+                document.getElementById('neuralState').textContent = themeName.charAt(0).toUpperCase() + themeName.slice(1);
+                
+                console.log(`🧠 Neural theme: ${themeName} | Brainwave: ${config.brainwaveFreq}Hz | Geometry: ${config.geometry}`);
+            }
+            
+            resize() {
+                const displayWidth = this.canvas.clientWidth;
+                const displayHeight = this.canvas.clientHeight;
+                
+                if (this.canvas.width !== displayWidth || this.canvas.height !== displayHeight) {
+                    this.canvas.width = displayWidth;
+                    this.canvas.height = displayHeight;
+                    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+                }
+            }
+            
+            render() {
+                // Apply consciousness effects to neural parameters
+                const consciousnessMultiplier = 1.0 + this.consciousnessState.intensity * 0.7;
+                const currentMorphFactor = this.neuralParams.morphFactor * consciousnessMultiplier;
+                const currentGridDensity = this.neuralParams.gridDensity * (1.0 + this.consciousnessState.intensity * 0.3);
+                
+                // Handle synaptic firing (dimensional consciousness shift)
+                let synapseEffect = 0;
+                if (this.consciousnessState.isFiring) {
+                    const firingDuration = Date.now() - this.consciousnessState.synapseStart;
+                    synapseEffect = Math.min(firingDuration / 3000, 1.0); // 3 second max firing
+                }
+                const currentDimension = this.neuralParams.dimension + synapseEffect * 0.8;
+                
+                // Map neural geometry to shader index
+                const geometryMap = {
+                    'hypercube': 0, 'tetrahedron': 1, 'sphere': 2, 'torus': 3,
+                    'klein': 4, 'fractal': 5, 'wave': 6, 'crystal': 7
+                };
+                const geometryIndex = geometryMap[this.neuralParams.geometry] || 0;
+                
+                this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+                this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+                this.gl.useProgram(this.program);
+                
+                // Setup neural vertex attributes
+                this.gl.enableVertexAttribArray(this.positionAttributeLocation);
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
+                this.gl.vertexAttribPointer(this.positionAttributeLocation, 2, this.gl.FLOAT, false, 0, 0);
+                
+                // Set consciousness uniforms
+                this.gl.uniform2f(this.uniforms.resolution, this.canvas.width, this.canvas.height);
+                this.gl.uniform1f(this.uniforms.time, (Date.now() - this.startTime) / 1000);
+                this.gl.uniform2f(this.uniforms.mouse, this.consciousnessState.mouseX, this.consciousnessState.mouseY);
+                this.gl.uniform1f(this.uniforms.morphFactor, currentMorphFactor);
+                this.gl.uniform1f(this.uniforms.glitchIntensity, this.neuralParams.glitchIntensity);
+                this.gl.uniform1f(this.uniforms.rotationSpeed, this.neuralParams.rotationSpeed);
+                this.gl.uniform1f(this.uniforms.dimension, currentDimension);
+                this.gl.uniform1f(this.uniforms.gridDensity, currentGridDensity);
+                this.gl.uniform3fv(this.uniforms.baseColor, this.neuralParams.baseColor);
+                this.gl.uniform1f(this.uniforms.consciousnessIntensity, this.consciousnessState.intensity);
+                this.gl.uniform1f(this.uniforms.geometry, geometryIndex);
+                this.gl.uniform1f(this.uniforms.brainwaveFreq, this.consciousnessState.brainwaveFreq);
+                
+                this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, 4);
+            }
+            
+            animate() {
+                this.render();
+                
+                // Decay consciousness intensity (neural adaptation)
+                this.consciousnessState.intensity *= 0.985;
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Initialize the neural consciousness system
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🧠 Initializing Neural Consciousness Dreamscape...');
+            
+            const canvas = document.getElementById('consciousness-canvas');
+            if (canvas) {
+                window.neuralCore = new NeuralConsciousnessCore(canvas);
+                console.log('✅ Neural Consciousness Core loaded successfully!');
+                console.log('🎯 Consciousness Interaction Guide:');
+                console.log('   • Scroll: Signal propagation, changes brainwave frequency');
+                console.log('   • Mouse: Neural field modulation');
+                console.log('   • Click/Hold: Synaptic firing, dimensional consciousness shift');
+                console.log('   • Rest: Returns to resting brainwave states');
+                console.log('   • Section navigation: Changes neural architecture themes');
+                console.log('   • Each theme: Different geometry + brainwave frequency');
+            }
+        });
+    </script>
+</body>
+</html>

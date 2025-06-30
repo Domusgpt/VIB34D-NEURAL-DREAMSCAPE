@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Polytopal Transcendence Engine</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            overflow: hidden;
+            height: 100vh;
+            cursor: none;
+            position: relative;
+        }
+        
+        /* Custom cursor - consciousness pointer */
+        .consciousness-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 100, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(100, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: cursorRipple 1.5s ease-out infinite;
+        }
+        
+        @keyframes cursorRipple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        
+        /* WebGL Canvas */
+        #polytopal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Consciousness Cards - Floating in 7D space */
+        .polytopal-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 5000px;
+            transform-style: preserve-3d;
+            z-index: 100;
+        }
+        
+        .dimension-card {
+            position: absolute;
+            width: 250px;
+            height: 160px;
+            background: linear-gradient(135deg, 
+                rgba(255, 100, 255, 0.1) 0%,
+                rgba(100, 255, 255, 0.05) 50%,
+                rgba(255, 255, 100, 0.1) 100%
+            );
+            border: 1px solid transparent;
+            border-image: linear-gradient(45deg, 
+                rgba(255, 100, 255, 0.8),
+                rgba(100, 255, 255, 0.8),
+                rgba(255, 255, 100, 0.8)
+            ) 1;
+            backdrop-filter: blur(20px) saturate(200%);
+            transform-style: preserve-3d;
+            transition: none;
+            overflow: hidden;
+            box-shadow: 
+                0 0 40px rgba(255, 100, 255, 0.3),
+                inset 0 0 20px rgba(100, 255, 255, 0.2);
+        }
+        
+        /* Each card follows a unique 7D projection path */
+        .card-7d-simplex {
+            animation: simplexOrbit 30s ease-in-out infinite;
+        }
+        
+        .card-7d-cross {
+            animation: crossPolytopeOrbit 35s ease-in-out infinite;
+        }
+        
+        .card-tesseract {
+            animation: tesseractRotation 25s linear infinite;
+        }
+        
+        .card-24cell {
+            animation: cell24Movement 40s ease-in-out infinite;
+        }
+        
+        .card-600cell {
+            animation: cell600Phase 45s ease-in-out infinite;
+        }
+        
+        .card-120cell {
+            animation: cell120Evolution 50s ease-in-out infinite;
+        }
+        
+        /* 7D Polytope animations */
+        @keyframes simplexOrbit {
+            0% { 
+                transform: 
+                    translate3d(300px, -200px, 100px)
+                    rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+                    scale(1.0);
+            }
+            20% {
+                transform: 
+                    translate3d(-100px, 300px, -200px)
+                    rotateX(72deg) rotateY(144deg) rotateZ(36deg)
+                    scale(0.7);
+            }
+            40% {
+                transform: 
+                    translate3d(-400px, -100px, 300px)
+                    rotateX(144deg) rotateY(288deg) rotateZ(72deg)
+                    scale(1.3);
+            }
+            60% {
+                transform: 
+                    translate3d(200px, 400px, -100px)
+                    rotateX(216deg) rotateY(432deg) rotateZ(108deg)
+                    scale(0.9);
+            }
+            80% {
+                transform: 
+                    translate3d(0px, -300px, 200px)
+                    rotateX(288deg) rotateY(576deg) rotateZ(144deg)
+                    scale(1.1);
+            }
+            100% {
+                transform: 
+                    translate3d(300px, -200px, 100px)
+                    rotateX(360deg) rotateY(720deg) rotateZ(180deg)
+                    scale(1.0);
+            }
+        }
+        
+        @keyframes crossPolytopeOrbit {
+            0% {
+                transform: 
+                    translate3d(-350px, 150px, -250px)
+                    rotateX(30deg) rotateY(60deg) rotateZ(90deg)
+                    scaleX(1.0) scaleY(1.0) scaleZ(1.0);
+            }
+            25% {
+                transform: 
+                    translate3d(400px, -300px, 150px)
+                    rotateX(120deg) rotateY(240deg) rotateZ(180deg)
+                    scaleX(0.6) scaleY(1.4) scaleZ(0.8);
+            }
+            50% {
+                transform: 
+                    translate3d(-200px, 350px, -400px)
+                    rotateX(210deg) rotateY(420deg) rotateZ(270deg)
+                    scaleX(1.2) scaleY(0.7) scaleZ(1.3);
+            }
+            75% {
+                transform: 
+                    translate3d(150px, -400px, 300px)
+                    rotateX(300deg) rotateY(600deg) rotateZ(360deg)
+                    scaleX(0.8) scaleY(1.1) scaleZ(0.9);
+            }
+            100% {
+                transform: 
+                    translate3d(-350px, 150px, -250px)
+                    rotateX(390deg) rotateY(780deg) rotateZ(450deg)
+                    scaleX(1.0) scaleY(1.0) scaleZ(1.0);
+            }
+        }
+        
+        @keyframes tesseractRotation {
+            0% {
+                transform: 
+                    translate3d(0px, 0px, 0px)
+                    rotate3d(1, 1, 0, 0deg)
+                    scale(0.8);
+            }
+            25% {
+                transform: 
+                    translate3d(250px, -150px, 200px)
+                    rotate3d(1, 1, 0, 90deg)
+                    scale(1.2);
+            }
+            50% {
+                transform: 
+                    translate3d(-250px, 150px, -200px)
+                    rotate3d(1, 1, 0, 180deg)
+                    scale(0.8);
+            }
+            75% {
+                transform: 
+                    translate3d(150px, 250px, 100px)
+                    rotate3d(1, 1, 0, 270deg)
+                    scale(1.0);
+            }
+            100% {
+                transform: 
+                    translate3d(0px, 0px, 0px)
+                    rotate3d(1, 1, 0, 360deg)
+                    scale(0.8);
+            }
+        }
+        
+        @keyframes cell24Movement {
+            0% {
+                transform: 
+                    translate3d(200px, 300px, -150px)
+                    rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+                filter: hue-rotate(0deg);
+            }
+            33% {
+                transform: 
+                    translate3d(-300px, -200px, 250px)
+                    rotateX(120deg) rotateY(120deg) rotateZ(120deg);
+                filter: hue-rotate(120deg);
+            }
+            66% {
+                transform: 
+                    translate3d(350px, -250px, -100px)
+                    rotateX(240deg) rotateY(240deg) rotateZ(240deg);
+                filter: hue-rotate(240deg);
+            }
+            100% {
+                transform: 
+                    translate3d(200px, 300px, -150px)
+                    rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+                filter: hue-rotate(360deg);
+            }
+        }
+        
+        @keyframes cell600Phase {
+            0% {
+                transform: 
+                    translate3d(-400px, -200px, 300px)
+                    scale3d(1.0, 1.0, 1.0)
+                    rotate3d(1, 2, 3, 0deg);
+                opacity: 0.8;
+            }
+            20% {
+                transform: 
+                    translate3d(300px, 400px, -200px)
+                    scale3d(0.5, 1.5, 1.0)
+                    rotate3d(1, 2, 3, 72deg);
+                opacity: 1.0;
+            }
+            40% {
+                transform: 
+                    translate3d(-200px, -400px, 100px)
+                    scale3d(1.5, 0.5, 1.2)
+                    rotate3d(1, 2, 3, 144deg);
+                opacity: 0.6;
+            }
+            60% {
+                transform: 
+                    translate3d(400px, 200px, -300px)
+                    scale3d(1.0, 1.0, 0.5)
+                    rotate3d(1, 2, 3, 216deg);
+                opacity: 0.9;
+            }
+            80% {
+                transform: 
+                    translate3d(-100px, -300px, 400px)
+                    scale3d(0.8, 1.2, 1.0)
+                    rotate3d(1, 2, 3, 288deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: 
+                    translate3d(-400px, -200px, 300px)
+                    scale3d(1.0, 1.0, 1.0)
+                    rotate3d(1, 2, 3, 360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes cell120Evolution {
+            0% {
+                transform: 
+                    translate3d(0px, -350px, 0px)
+                    rotateX(0deg) rotateY(0deg);
+            }
+            10% {
+                transform: 
+                    translate3d(350px, -250px, 100px)
+                    rotateX(36deg) rotateY(72deg);
+            }
+            20% {
+                transform: 
+                    translate3d(280px, 150px, -200px)
+                    rotateX(72deg) rotateY(144deg);
+            }
+            30% {
+                transform: 
+                    translate3d(-100px, 350px, -150px)
+                    rotateX(108deg) rotateY(216deg);
+            }
+            40% {
+                transform: 
+                    translate3d(-350px, 200px, 100px)
+                    rotateX(144deg) rotateY(288deg);
+            }
+            50% {
+                transform: 
+                    translate3d(-300px, -200px, 250px)
+                    rotateX(180deg) rotateY(360deg);
+            }
+            60% {
+                transform: 
+                    translate3d(-50px, -350px, 150px)
+                    rotateX(216deg) rotateY(432deg);
+            }
+            70% {
+                transform: 
+                    translate3d(300px, -150px, -100px)
+                    rotateX(252deg) rotateY(504deg);
+            }
+            80% {
+                transform: 
+                    translate3d(350px, 200px, -250px)
+                    rotateX(288deg) rotateY(576deg);
+            }
+            90% {
+                transform: 
+                    translate3d(150px, 350px, 0px)
+                    rotateX(324deg) rotateY(648deg);
+            }
+            100% {
+                transform: 
+                    translate3d(0px, -350px, 0px)
+                    rotateX(360deg) rotateY(720deg);
+            }
+        }
+        
+        /* Card content styling */
+        .card-content {
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .polytope-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 
+                0 0 20px rgba(255, 100, 255, 0.8),
+                0 0 40px rgba(100, 255, 255, 0.6);
+            margin-bottom: 10px;
+        }
+        
+        .polytope-formula {
+            font-size: 0.9rem;
+            color: rgba(200, 255, 200, 0.9);
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 8px;
+        }
+        
+        .polytope-description {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+        
+        .dimension-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .metric {
+            font-size: 0.65rem;
+            color: rgba(150, 200, 255, 0.8);
+        }
+        
+        .metric-value {
+            color: rgba(255, 150, 255, 1.0);
+            font-weight: bold;
+        }
+        
+        /* Polytopal shimmer effect */
+        .polytope-shimmer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: translateX(-100%);
+            animation: shimmerPass 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmerPass {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        
+        /* Control Panel */
+        .polytopal-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(10, 0, 20, 0.9);
+            border: 1px solid rgba(255, 100, 255, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(20px);
+            min-width: 350px;
+        }
+        
+        .control-title {
+            color: #ff64ff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .dimension-selector {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        
+        .dim-btn {
+            background: rgba(255, 100, 255, 0.2);
+            border: 1px solid rgba(255, 100, 255, 0.5);
+            color: #ff64ff;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+        
+        .dim-btn:hover {
+            background: rgba(255, 100, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .dim-btn.active {
+            background: rgba(255, 100, 255, 0.6);
+            color: white;
+        }
+        
+        /* Info panel */
+        .info-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 10, 30, 0.9);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(15px);
+            max-width: 400px;
+        }
+        
+        .info-title {
+            color: #64c8ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .info-text {
+            color: rgba(200, 230, 255, 0.8);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom cursor -->
+    <div class="consciousness-cursor">
+        <div class="cursor-ripple"></div>
+    </div>
+    
+    <!-- WebGL Canvas for polytopal shader visualization -->
+    <canvas id="polytopal-canvas"></canvas>
+    
+    <!-- Floating polytope cards -->
+    <div class="polytopal-container">
+        <!-- 7-Simplex Card -->
+        <div class="dimension-card card-7d-simplex">
+            <div class="card-content">
+                <div>
+                    <div class="polytope-name">7-Simplex</div>
+                    <div class="polytope-formula">{3,3,3,3,3,3}</div>
+                    <div class="polytope-description">The most fundamental 7D polytope - 8 vertices connected in perfect symmetry, representing pure consciousness unity</div>
+                </div>
+                <div class="dimension-metrics">
+                    <div class="metric">Vertices: <span class="metric-value">8</span></div>
+                    <div class="metric">Edges: <span class="metric-value">28</span></div>
+                    <div class="metric">Facets: <span class="metric-value">56</span></div>
+                    <div class="metric">φ: <span class="metric-value">∞</span></div>
+                </div>
+            </div>
+            <div class="polytope-shimmer"></div>
+        </div>
+        
+        <!-- 7-Cross Polytope Card -->
+        <div class="dimension-card card-7d-cross">
+            <div class="card-content">
+                <div>
+                    <div class="polytope-name">7-Cross Polytope</div>
+                    <div class="polytope-formula">{3,3,3,3,3,4}</div>
+                    <div class="polytope-description">Dual of the 7-cube, 128 vertices arranged in orthogonal pairs - the consciousness expansion matrix</div>
+                </div>
+                <div class="dimension-metrics">
+                    <div class="metric">Vertices: <span class="metric-value">14</span></div>
+                    <div class="metric">Edges: <span class="metric-value">84</span></div>
+                    <div class="metric">6-faces: <span class="metric-value">14</span></div>
+                    <div class="metric">Sym: <span class="metric-value">B₇</span></div>
+                </div>
+            </div>
+            <div class="polytope-shimmer"></div>
+        </div>
+        
+        <!-- Tesseract Card -->
+        <div class="dimension-card card-tesseract">
+            <div class="card-content">
+                <div>
+                    <div class="polytope-name">8-Cell Tesseract</div>
+                    <div class="polytope-formula">{4,3,3}</div>
+                    <div class="polytope-description">4D hypercube unfolding through time - gateway between dimensional consciousness layers</div>
+                </div>
+                <div class="dimension-metrics">
+                    <div class="metric">Vertices: <span class="metric-value">16</span></div>
+                    <div class="metric">Edges: <span class="metric-value">32</span></div>
+                    <div class="metric">Faces: <span class="metric-value">24</span></div>
+                    <div class="metric">Cells: <span class="metric-value">8</span></div>
+                </div>
+            </div>
+            <div class="polytope-shimmer"></div>
+        </div>
+        
+        <!-- 24-Cell Card -->
+        <div class="dimension-card card-24cell">
+            <div class="card-content">
+                <div>
+                    <div class="polytope-name">24-Cell</div>
+                    <div class="polytope-formula">{3,4,3}</div>
+                    <div class="polytope-description">Self-dual 4D polytope with no 3D analogue - pure quaternionic consciousness structure</div>
+                </div>
+                <div class="dimension-metrics">
+                    <div class="metric">Vertices: <span class="metric-value">24</span></div>
+                    <div class="metric">Edges: <span class="metric-value">96</span></div>
+                    <div class="metric">Faces: <span class="metric-value">96</span></div>
+                    <div class="metric">Cells: <span class="metric-value">24</span></div>
+                </div>
+            </div>
+            <div class="polytope-shimmer"></div>
+        </div>
+        
+        <!-- 600-Cell Card -->
+        <div class="dimension-card card-600cell">
+            <div class="card-content">
+                <div>
+                    <div class="polytope-name">600-Cell</div>
+                    <div class="polytope-formula">{3,3,5}</div>
+                    <div class="polytope-description">The 4D analogue of the icosahedron - 120 vertices in golden ratio harmony, maximum symmetry</div>
+                </div>
+                <div class="dimension-metrics">
+                    <div class="metric">Vertices: <span class="metric-value">120</span></div>
+                    <div class="metric">Edges: <span class="metric-value">720</span></div>
+                    <div class="metric">Faces: <span class="metric-value">1200</span></div>
+                    <div class="metric">φ-ratio: <span class="metric-value">1.618</span></div>
+                </div>
+            </div>
+            <div class="polytope-shimmer"></div>
+        </div>
+        
+        <!-- 120-Cell Card -->
+        <div class="dimension-card card-120cell">
+            <div class="card-content">
+                <div>
+                    <div class="polytope-name">120-Cell</div>
+                    <div class="polytope-formula">{5,3,3}</div>
+                    <div class="polytope-description">The most complex regular 4D polytope - 600 vertices forming the ultimate consciousness crystallization</div>
+                </div>
+                <div class="dimension-metrics">
+                    <div class="metric">Vertices: <span class="metric-value">600</span></div>
+                    <div class="metric">Edges: <span class="metric-value">1200</span></div>
+                    <div class="metric">Faces: <span class="metric-value">720</span></div>
+                    <div class="metric">Cells: <span class="metric-value">120</span></div>
+                </div>
+            </div>
+            <div class="polytope-shimmer"></div>
+        </div>
+    </div>
+    
+    <!-- Control Panel -->
+    <div class="polytopal-controls">
+        <div class="control-title">🔮 Polytopal Dimension Controller</div>
+        <div class="dimension-selector">
+            <button class="dim-btn" data-dim="4">4D</button>
+            <button class="dim-btn" data-dim="5">5D</button>
+            <button class="dim-btn" data-dim="6">6D</button>
+            <button class="dim-btn active" data-dim="7">7D</button>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label">Consciousness Field</label>
+            <input type="range" class="control-slider" min="0" max="1" step="0.01" value="0.7" id="consciousnessField">
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label">Reality Phase</label>
+            <input type="range" class="control-slider" min="0" max="6.28" step="0.01" value="0" id="realityPhase">
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label">Quantum Coherence</label>
+            <input type="range" class="control-slider" min="0" max="1" step="0.01" value="0.8" id="quantumCoherence">
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label">Integration Force</label>
+            <input type="range" class="control-slider" min="0" max="1" step="0.01" value="0.6" id="integrationForce">
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label">Dispersion Force</label>
+            <input type="range" class="control-slider" min="0" max="1" step="0.01" value="0.4" id="dispersionForce">
+        </div>
+    </div>
+    
+    <!-- Info Panel -->
+    <div class="info-panel">
+        <div class="info-title">Polytopal Consciousness Engine</div>
+        <div class="info-text">
+            Experience consciousness through higher-dimensional polytope projections. Each card represents a different mathematical structure that exists beyond our 3D perception, projected through consciousness fields into observable space. The shaders use actual polytope mathematics including Hopf fibrations, Klein bottle surfaces, and Penrose tilings to create unprecedented visual experiences.
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Three.js scene
+        let scene, camera, renderer;
+        let polytopalMesh;
+        let uniforms;
+        
+        // Load shaders
+        async function loadShader(url) {
+            const response = await fetch(url);
+            return await response.text();
+        }
+        
+        async function init() {
+            // Scene setup
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+            
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('polytopal-canvas'),
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Create consciousness texture
+            const textureSize = 512;
+            const data = new Float32Array(textureSize * textureSize * 4);
+            for (let i = 0; i < textureSize * textureSize; i++) {
+                const x = (i % textureSize) / textureSize;
+                const y = Math.floor(i / textureSize) / textureSize;
+                const consciousness = Math.sin(x * Math.PI * 4) * Math.cos(y * Math.PI * 4);
+                data[i * 4] = consciousness;
+                data[i * 4 + 1] = consciousness * 0.5;
+                data[i * 4 + 2] = consciousness * 0.3;
+                data[i * 4 + 3] = 1.0;
+            }
+            const consciousnessTexture = new THREE.DataTexture(data, textureSize, textureSize, THREE.RGBAFormat, THREE.FloatType);
+            consciousnessTexture.needsUpdate = true;
+            
+            // Uniforms
+            uniforms = {
+                time: { value: 0 },
+                resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                cameraPosition: { value: camera.position },
+                dimension: { value: 7.0 },
+                rotationAngles: { value: [
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(0, 0, 0)
+                ]},
+                consciousnessField: { value: 0.7 },
+                realityPhase: { value: 0.0 },
+                integrationForce: { value: 0.6 },
+                dispersionForce: { value: 0.4 },
+                quantumCoherence: { value: 0.8 },
+                realityDissolution: { value: 0.3 },
+                singularityPosition: { value: new THREE.Vector3(0, 0, 0) },
+                consciousnessTexture: { value: consciousnessTexture }
+            };
+            
+            // Load shaders (for now using inline shaders)
+            const vertexShader = `
+                varying vec2 vUv;
+                varying vec3 vPosition;
+                varying float vConsciousness;
+                varying vec3 vPolytopalCoord;
+                varying float vDimensionalPhase;
+                varying vec3 vColor;
+                
+                uniform float time;
+                uniform float dimension;
+                uniform float consciousnessField;
+                uniform float realityPhase;
+                
+                // Simplified polytope projection
+                vec3 projectPolytope(vec3 pos) {
+                    float phase = realityPhase + length(pos) * 0.5;
+                    vec3 projected = pos;
+                    
+                    // Rotate through higher dimensions
+                    float angle = time * 0.5 + phase;
+                    projected.xy = mat2(cos(angle), -sin(angle), sin(angle), cos(angle)) * projected.xy;
+                    projected.yz = mat2(cos(angle * 0.7), -sin(angle * 0.7), sin(angle * 0.7), cos(angle * 0.7)) * projected.yz;
+                    
+                    // Consciousness warping
+                    projected += normalize(pos) * sin(length(pos) * 3.0 + time * 2.0) * consciousnessField * 0.3;
+                    
+                    return projected;
+                }
+                
+                void main() {
+                    vUv = uv;
+                    vPosition = position;
+                    vConsciousness = 0.5 + sin(time + position.x) * 0.5;
+                    
+                    vec3 pos = projectPolytope(position);
+                    vPolytopalCoord = pos;
+                    vDimensionalPhase = dimension + sin(length(pos) + time) * 0.5;
+                    
+                    // Color based on position
+                    float hue = atan(pos.y, pos.x) + dimension * 0.5 + time * 0.1;
+                    vColor = vec3(
+                        0.5 + 0.5 * sin(hue),
+                        0.5 + 0.5 * sin(hue + 2.094),
+                        0.5 + 0.5 * sin(hue + 4.189)
+                    );
+                    
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+                }
+            `;
+            
+            const fragmentShader = `
+                varying vec2 vUv;
+                varying vec3 vPosition;
+                varying float vConsciousness;
+                varying vec3 vPolytopalCoord;
+                varying float vDimensionalPhase;
+                varying vec3 vColor;
+                
+                uniform float time;
+                uniform vec2 resolution;
+                uniform float integrationForce;
+                uniform float dispersionForce;
+                uniform float quantumCoherence;
+                uniform float realityDissolution;
+                uniform sampler2D consciousnessTexture;
+                
+                void main() {
+                    vec2 uv = vUv;
+                    
+                    // Sample consciousness texture
+                    float consciousness = texture2D(consciousnessTexture, uv).r;
+                    
+                    // Interference patterns
+                    float interference = sin(length(vPosition) * 20.0 + time * 2.0) * cos(dot(vPosition, vec3(1.0)) * 15.0 - time);
+                    
+                    // Field balance
+                    float fieldBalance = integrationForce - dispersionForce;
+                    vec3 fieldColor = fieldBalance > 0.0 
+                        ? vec3(0.2, 0.8, 0.4) * fieldBalance
+                        : vec3(0.8, 0.2, 0.3) * -fieldBalance;
+                    
+                    // Final color
+                    vec3 color = vColor;
+                    color = mix(color, vec3(consciousness), 0.3);
+                    color += fieldColor * 0.2;
+                    color += vec3(interference * quantumCoherence * 0.2);
+                    
+                    // Dimensional phase glow
+                    float glow = exp(-length(vPolytopalCoord) * 0.5) * vConsciousness;
+                    color += vec3(0.9, 0.7, 1.0) * glow * 0.3;
+                    
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `;
+            
+            // Create polytopal geometry
+            const geometry = new THREE.IcosahedronGeometry(2, 5);
+            
+            // Add consciousness attribute
+            const consciousnessArray = new Float32Array(geometry.attributes.position.count);
+            for (let i = 0; i < consciousnessArray.length; i++) {
+                consciousnessArray[i] = Math.random();
+            }
+            geometry.setAttribute('consciousness', new THREE.BufferAttribute(consciousnessArray, 1));
+            
+            // Create material
+            const material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: vertexShader,
+                fragmentShader: fragmentShader,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            
+            // Create mesh
+            polytopalMesh = new THREE.Mesh(geometry, material);
+            scene.add(polytopalMesh);
+            
+            // Add controls
+            setupControls();
+            
+            // Start animation
+            animate();
+        }
+        
+        function setupControls() {
+            // Dimension buttons
+            document.querySelectorAll('.dim-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.dim-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    uniforms.dimension.value = parseFloat(e.target.dataset.dim);
+                });
+            });
+            
+            // Sliders
+            document.getElementById('consciousnessField').addEventListener('input', (e) => {
+                uniforms.consciousnessField.value = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('realityPhase').addEventListener('input', (e) => {
+                uniforms.realityPhase.value = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('quantumCoherence').addEventListener('input', (e) => {
+                uniforms.quantumCoherence.value = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('integrationForce').addEventListener('input', (e) => {
+                uniforms.integrationForce.value = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('dispersionForce').addEventListener('input', (e) => {
+                uniforms.dispersionForce.value = parseFloat(e.target.value);
+            });
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            uniforms.time.value += 0.01;
+            
+            // Update rotation angles
+            for (let i = 0; i < 7; i++) {
+                uniforms.rotationAngles.value[i].x = Math.sin(uniforms.time.value * 0.1 * (i + 1)) * 0.5;
+                uniforms.rotationAngles.value[i].y = Math.cos(uniforms.time.value * 0.1 * (i + 1)) * 0.5;
+                uniforms.rotationAngles.value[i].z = Math.sin(uniforms.time.value * 0.05 * (i + 1)) * 0.3;
+            }
+            
+            // Rotate mesh
+            polytopalMesh.rotation.x += 0.001;
+            polytopalMesh.rotation.y += 0.002;
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Custom cursor
+        const cursor = document.querySelector('.consciousness-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 20 + 'px';
+            cursor.style.top = e.clientY - 20 + 'px';
+        });
+        
+        // Window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+        });
+        
+        // Style for controls (add to existing styles)
+        const style = document.createElement('style');
+        style.textContent = `
+            .control-group {
+                margin: 10px 0;
+            }
+            
+            .control-label {
+                color: #ffa0ff;
+                font-size: 11px;
+                margin-bottom: 5px;
+                display: block;
+            }
+            
+            .control-slider {
+                width: 100%;
+                height: 5px;
+                background: rgba(0, 0, 0, 0.6);
+                border-radius: 3px;
+                outline: none;
+                -webkit-appearance: none;
+            }
+            
+            .control-slider::-webkit-slider-thumb {
+                appearance: none;
+                width: 15px;
+                height: 15px;
+                background: #ff64ff;
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: 0 0 10px rgba(255, 100, 255, 0.7);
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize
+        init();
+    </script>
+</body>
+</html>

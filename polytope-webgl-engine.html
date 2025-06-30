@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 VIB34D WebGL Polytope Engine</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            overflow: hidden;
+            height: 100vh;
+            cursor: none;
+        }
+        
+        /* WebGL Canvas */
+        #webgl-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Floating polytopal cards with real mathematical behaviors */
+        .floating-cards-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            perspective: 3000px;
+            transform-style: preserve-3d;
+        }
+        
+        .polytopal-card {
+            position: absolute;
+            width: 320px;
+            height: 200px;
+            background: linear-gradient(135deg, 
+                rgba(255, 100, 255, 0.1),
+                rgba(100, 255, 255, 0.05),
+                rgba(255, 255, 100, 0.1)
+            );
+            border: 2px solid;
+            border-image: linear-gradient(45deg, 
+                rgba(255, 100, 255, 0.8),
+                rgba(100, 255, 255, 0.8),
+                rgba(255, 255, 100, 0.8)
+            ) 1;
+            backdrop-filter: blur(25px) saturate(300%);
+            border-radius: 25px;
+            padding: 25px;
+            transform-style: preserve-3d;
+            transition: none;
+            overflow: hidden;
+            box-shadow: 
+                0 0 60px rgba(255, 100, 255, 0.4),
+                inset 0 0 30px rgba(100, 255, 255, 0.3);
+        }
+        
+        /* Revolutionary text content that changes based on mathematics */
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 20px rgba(255, 100, 255, 0.6);
+        }
+        
+        .card-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+        
+        .card-math-data {
+            font-size: 0.8rem;
+            color: rgba(100, 255, 255, 0.9);
+            font-family: 'Orbitron', monospace;
+        }
+        
+        /* Control panel for mathematical parameters */
+        .math-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 20, 40, 0.95);
+            border: 2px solid rgba(100, 200, 255, 0.5);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(20px);
+            max-width: 350px;
+        }
+        
+        .control-title {
+            color: #64c8ff;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .control-group {
+            margin-bottom: 18px;
+        }
+        
+        .control-label {
+            color: #a0c4ff;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .control-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+            border: 1px solid rgba(100, 200, 255, 0.4);
+        }
+        
+        .control-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #ff64ff, #64ffff);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 100, 255, 0.8);
+        }
+        
+        /* Real-time info display */
+        .info-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(20, 0, 40, 0.95);
+            border: 2px solid rgba(255, 100, 255, 0.6);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+            max-width: 300px;
+        }
+        
+        .info-title {
+            color: #ff64ff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+        }
+        
+        .info-value {
+            color: #64ffff;
+            font-weight: bold;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        /* Custom cursor */
+        .consciousness-cursor {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 100, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: rgba(100, 255, 255, 0.9);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 100, 0.6);
+            border-radius: 50%;
+            animation: cursorRipple 2s ease-out infinite;
+        }
+        
+        @keyframes cursorRipple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom consciousness cursor -->
+    <div class="consciousness-cursor" id="cursor">
+        <div class="cursor-inner"></div>
+        <div class="cursor-ripple"></div>
+    </div>
+    
+    <!-- WebGL Canvas for 7D polytope rendering -->
+    <canvas id="webgl-canvas"></canvas>
+    
+    <!-- Floating polytopal cards with dynamic content -->
+    <div class="floating-cards-container" id="cardsContainer">
+        <!-- Cards will be dynamically generated based on mathematics -->
+    </div>
+    
+    <!-- Mathematical parameter controls -->
+    <div class="math-controls">
+        <div class="control-title">🔮 Polytopal Mathematics</div>
+        
+        <div class="control-group">
+            <div class="control-label">7D Rotation Speed</div>
+            <input type="range" class="control-slider" id="rotationSpeed" min="0.1" max="5" value="1" step="0.1">
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label">Dimensional Projection</div>
+            <input type="range" class="control-slider" id="dimensionalProjection" min="3" max="7" value="4" step="0.1">
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label">Consciousness Field</div>
+            <input type="range" class="control-slider" id="consciousnessField" min="0" max="2" value="1" step="0.05">
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label">Polytope Complexity</div>
+            <input type="range" class="control-slider" id="polytopeComplexity" min="4" max="120" value="8" step="1">
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label">Golden Ratio Factor</div>
+            <input type="range" class="control-slider" id="goldenRatio" min="1" max="3" value="1.618" step="0.001">
+        </div>
+        
+        <div class="control-group">
+            <div class="control-label">Reality Distortion</div>
+            <input type="range" class="control-slider" id="realityDistortion" min="0" max="5" value="1" step="0.1">
+        </div>
+    </div>
+    
+    <!-- Real-time mathematics info -->
+    <div class="info-panel">
+        <div class="info-title">📐 Real-time Mathematics</div>
+        <div class="info-item">Dimension: <span class="info-value" id="currentDimension">4D</span></div>
+        <div class="info-item">Vertices: <span class="info-value" id="vertexCount">8</span></div>
+        <div class="info-item">Edges: <span class="info-value" id="edgeCount">28</span></div>
+        <div class="info-item">Faces: <span class="info-value" id="faceCount">56</span></div>
+        <div class="info-item">Cells: <span class="info-value" id="cellCount">35</span></div>
+        <div class="info-item">φ-Ratio: <span class="info-value" id="phiRatio">1.618</span></div>
+        <div class="info-item">Projection: <span class="info-value" id="projectionType">Tesseract</span></div>
+    </div>
+    
+    <script>
+        // WebGL Scene Setup
+        let scene, camera, renderer, polytope;
+        let animationTime = 0;
+        let cards = [];
+        
+        // Mathematical parameters (reactive to controls)
+        let params = {
+            rotationSpeed: 1,
+            dimensionalProjection: 4,
+            consciousnessField: 1,
+            polytopeComplexity: 8,
+            goldenRatio: 1.618,
+            realityDistortion: 1
+        };
+        
+        // Initialize WebGL scene
+        function initWebGL() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('webgl-canvas'),
+                alpha: true,
+                antialias: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            
+            // Create initial polytope
+            createPolytope();
+            
+            camera.position.z = 5;
+            
+            // Start animation loop
+            animate();
+        }
+        
+        // Create 7D polytope projection
+        function createPolytope() {
+            if (polytope) {
+                scene.remove(polytope);
+            }
+            
+            polytope = new THREE.Group();
+            
+            // Generate vertices based on current complexity
+            const vertices = generatePolytopeVertices(params.polytopeComplexity, params.dimensionalProjection);
+            
+            // Create vertex spheres
+            vertices.forEach((vertex, index) => {
+                const geometry = new THREE.SphereGeometry(0.05, 16, 16);
+                const material = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(
+                        (index / vertices.length + animationTime * 0.1) % 1,
+                        0.8,
+                        0.6 + 0.4 * params.consciousnessField
+                    ),
+                    transparent: true,
+                    opacity: 0.8
+                });
+                
+                const sphere = new THREE.Mesh(geometry, material);
+                sphere.position.set(vertex.x, vertex.y, vertex.z);
+                polytope.add(sphere);
+                
+                // Add consciousness field glow
+                const glowGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+                const glowMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x64ffff,
+                    transparent: true,
+                    opacity: 0.3 * params.consciousnessField
+                });
+                const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+                glow.position.copy(sphere.position);
+                polytope.add(glow);
+            });
+            
+            // Create edges
+            for (let i = 0; i < vertices.length; i++) {
+                for (let j = i + 1; j < vertices.length; j++) {
+                    if (shouldConnectVertices(vertices[i], vertices[j], params.polytopeComplexity)) {
+                        const geometry = new THREE.BufferGeometry().setFromPoints([
+                            new THREE.Vector3(vertices[i].x, vertices[i].y, vertices[i].z),
+                            new THREE.Vector3(vertices[j].x, vertices[j].y, vertices[j].z)
+                        ]);
+                        
+                        const material = new THREE.LineBasicMaterial({
+                            color: new THREE.Color().setHSL(
+                                (i + j) / (vertices.length * 2),
+                                0.6,
+                                0.4 + 0.3 * params.consciousnessField
+                            ),
+                            transparent: true,
+                            opacity: 0.6
+                        });
+                        
+                        const line = new THREE.Line(geometry, material);
+                        polytope.add(line);
+                    }
+                }
+            }
+            
+            scene.add(polytope);
+            updateCardsBasedOnMathematics(vertices);
+        }
+        
+        // Generate polytope vertices based on complexity and dimension
+        function generatePolytopeVertices(complexity, dimension) {
+            const vertices = [];
+            
+            if (complexity <= 8) {
+                // 7-Simplex (8 vertices)
+                for (let i = 0; i < 8; i++) {
+                    const angle1 = (i / 8) * 2 * Math.PI;
+                    const angle2 = ((i * params.goldenRatio) % 1) * 2 * Math.PI;
+                    const angle3 = ((i * params.goldenRatio * params.goldenRatio) % 1) * 2 * Math.PI;
+                    
+                    vertices.push({
+                        x: Math.cos(angle1) * Math.cos(angle2) * 2,
+                        y: Math.sin(angle1) * Math.cos(angle2) * 2,
+                        z: Math.sin(angle2) * Math.cos(angle3) * 2
+                    });
+                }
+            } else if (complexity <= 16) {
+                // 7-Cross Polytope (14 vertices)
+                for (let i = 0; i < 14; i++) {
+                    const t = i / 14;
+                    const angle = t * 2 * Math.PI;
+                    const height = Math.sin(t * Math.PI) * 2;
+                    
+                    vertices.push({
+                        x: Math.cos(angle) * (1 + height * 0.3),
+                        y: Math.sin(angle) * (1 + height * 0.3),
+                        z: height
+                    });
+                }
+            } else if (complexity <= 24) {
+                // 24-Cell (24 vertices)
+                for (let i = 0; i < 24; i++) {
+                    const phi = params.goldenRatio;
+                    const t = i / 24;
+                    const angle1 = t * 2 * Math.PI;
+                    const angle2 = (t * phi) % 1 * 2 * Math.PI;
+                    
+                    vertices.push({
+                        x: Math.cos(angle1) * (1 + 0.5 * Math.cos(angle2)),
+                        y: Math.sin(angle1) * (1 + 0.5 * Math.cos(angle2)),
+                        z: Math.sin(angle2) * 1.5
+                    });
+                }
+            } else {
+                // 120-Cell / 600-Cell approximation
+                const numVertices = Math.min(complexity, 120);
+                for (let i = 0; i < numVertices; i++) {
+                    const phi = params.goldenRatio;
+                    const t = i / numVertices;
+                    const angle1 = t * 2 * Math.PI * phi;
+                    const angle2 = (t * phi * phi) % 1 * 2 * Math.PI;
+                    const angle3 = (t * phi * phi * phi) % 1 * 2 * Math.PI;
+                    
+                    const r1 = 1 + 0.5 * Math.cos(angle3);
+                    const r2 = 1 + 0.3 * Math.sin(angle3);
+                    
+                    vertices.push({
+                        x: Math.cos(angle1) * r1,
+                        y: Math.sin(angle1) * r1,
+                        z: Math.cos(angle2) * r2 + Math.sin(angle2) * r2 * 0.5
+                    });
+                }
+            }
+            
+            return vertices;
+        }
+        
+        // Determine if vertices should be connected
+        function shouldConnectVertices(v1, v2, complexity) {
+            const distance = Math.sqrt(
+                Math.pow(v1.x - v2.x, 2) + 
+                Math.pow(v1.y - v2.y, 2) + 
+                Math.pow(v1.z - v2.z, 2)
+            );
+            
+            // Connection threshold based on complexity
+            const threshold = 1.5 + (complexity / 120) * 2;
+            return distance < threshold;
+        }
+        
+        // Update floating cards based on current mathematics
+        function updateCardsBasedOnMathematics(vertices) {
+            const container = document.getElementById('cardsContainer');
+            container.innerHTML = '';
+            cards = [];
+            
+            // Generate cards based on mathematical properties
+            const numCards = Math.min(6, Math.floor(params.polytopeComplexity / 4) + 2);
+            
+            for (let i = 0; i < numCards; i++) {
+                const card = document.createElement('div');
+                card.className = 'polytopal-card';
+                
+                const vertex = vertices[i % vertices.length];
+                const cardData = generateCardContent(i, vertex, vertices.length);
+                
+                card.innerHTML = `
+                    <div class="card-title">${cardData.title}</div>
+                    <div class="card-description">${cardData.description}</div>
+                    <div class="card-math-data">${cardData.mathData}</div>
+                `;
+                
+                // Position based on mathematical projection
+                const angle = (i / numCards) * 2 * Math.PI;
+                const radius = 300 + params.realityDistortion * 100;
+                const x = window.innerWidth / 2 + Math.cos(angle) * radius;
+                const y = window.innerHeight / 2 + Math.sin(angle) * radius;
+                
+                card.style.left = x - 160 + 'px';
+                card.style.top = y - 100 + 'px';
+                
+                // Mathematical transformation
+                const rotX = vertex.x * 15 * params.realityDistortion;
+                const rotY = vertex.y * 15 * params.realityDistortion;
+                const rotZ = vertex.z * 15 * params.realityDistortion;
+                const scale = 1 + (params.consciousnessField - 1) * 0.3;
+                
+                card.style.transform = `
+                    rotateX(${rotX}deg) 
+                    rotateY(${rotY}deg) 
+                    rotateZ(${rotZ}deg) 
+                    scale(${scale})
+                    translateZ(${vertex.z * 50}px)
+                `;
+                
+                container.appendChild(card);
+                cards.push({ element: card, vertex: vertex, index: i });
+            }
+        }
+        
+        // Generate dynamic card content based on mathematics
+        function generateCardContent(index, vertex, totalVertices) {
+            const titles = [
+                `🔺 ${totalVertices}-Vertex Simplex`,
+                `✚ Cross-Polytope Dynamics`,
+                `🌀 Golden Ratio Spiral`,
+                `🔮 Quantum Superposition`,
+                `⚡ Dimensional Cascade`,
+                `💎 Consciousness Crystal`
+            ];
+            
+            const title = titles[index % titles.length];
+            
+            const description = generateMathematicalDescription(vertex, totalVertices);
+            const mathData = generateMathData(vertex, index, totalVertices);
+            
+            return { title, description, mathData };
+        }
+        
+        function generateMathematicalDescription(vertex, totalVertices) {
+            const distance = Math.sqrt(vertex.x * vertex.x + vertex.y * vertex.y + vertex.z * vertex.z);
+            const angle = Math.atan2(vertex.y, vertex.x) * 180 / Math.PI;
+            
+            const descriptions = [
+                `Vertex positioned at distance ${distance.toFixed(3)} from origin, creating ${totalVertices}-dimensional consciousness field resonance.`,
+                `Mathematical projection through ${params.dimensionalProjection.toFixed(1)}D space with angular displacement of ${angle.toFixed(1)}°.`,
+                `Golden ratio φ=${params.goldenRatio.toFixed(3)} generates spiral consciousness patterns through polytopal vertex interactions.`,
+                `Reality distortion factor ${params.realityDistortion.toFixed(2)} modifies spacetime curvature around vertex coordinates.`,
+                `Consciousness field strength ${params.consciousnessField.toFixed(2)} amplifies dimensional awareness through mathematical resonance.`,
+                `Polytope complexity ${params.polytopeComplexity} creates emergent geometric patterns transcending 3D limitations.`
+            ];
+            
+            return descriptions[Math.floor(distance * 3) % descriptions.length];
+        }
+        
+        function generateMathData(vertex, index, totalVertices) {
+            return `
+                Position: (${vertex.x.toFixed(2)}, ${vertex.y.toFixed(2)}, ${vertex.z.toFixed(2)})<br>
+                Index: ${index}/${totalVertices}<br>
+                φ-Factor: ${(params.goldenRatio * vertex.x).toFixed(3)}<br>
+                Dimension: ${params.dimensionalProjection.toFixed(1)}D<br>
+                Field: ${(params.consciousnessField * 100).toFixed(0)}%
+            `;
+        }
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            animationTime += 0.016 * params.rotationSpeed;
+            
+            if (polytope) {
+                // 7D rotation simulation
+                polytope.rotation.x = animationTime * 0.3;
+                polytope.rotation.y = animationTime * 0.5;
+                polytope.rotation.z = animationTime * 0.7;
+                
+                // Scale based on consciousness field
+                polytope.scale.setScalar(0.5 + params.consciousnessField * 0.5);
+                
+                // Reality distortion effects
+                polytope.children.forEach((child, index) => {
+                    if (child.isMesh) {
+                        const distortion = Math.sin(animationTime + index) * params.realityDistortion * 0.1;
+                        child.position.x += distortion;
+                        child.position.y += distortion * 0.7;
+                        child.position.z += distortion * 0.3;
+                    }
+                });
+            }
+            
+            // Animate cards
+            cards.forEach((cardData, index) => {
+                const card = cardData.element;
+                const vertex = cardData.vertex;
+                
+                const time = animationTime + index * 0.5;
+                const float = Math.sin(time) * 20 * params.consciousnessField;
+                const rotate = Math.cos(time * 0.7) * 5 * params.realityDistortion;
+                
+                const currentTransform = card.style.transform;
+                card.style.transform = currentTransform + ` translateY(${float}px) rotateZ(${rotate}deg)`;
+            });
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Control system setup
+        function setupControls() {
+            document.getElementById('rotationSpeed').addEventListener('input', (e) => {
+                params.rotationSpeed = parseFloat(e.target.value);
+            });
+            
+            document.getElementById('dimensionalProjection').addEventListener('input', (e) => {
+                params.dimensionalProjection = parseFloat(e.target.value);
+                updateInfoDisplay();
+                createPolytope();
+            });
+            
+            document.getElementById('consciousnessField').addEventListener('input', (e) => {
+                params.consciousnessField = parseFloat(e.target.value);
+                updateInfoDisplay();
+            });
+            
+            document.getElementById('polytopeComplexity').addEventListener('input', (e) => {
+                params.polytopeComplexity = parseInt(e.target.value);
+                updateInfoDisplay();
+                createPolytope();
+            });
+            
+            document.getElementById('goldenRatio').addEventListener('input', (e) => {
+                params.goldenRatio = parseFloat(e.target.value);
+                updateInfoDisplay();
+                createPolytope();
+            });
+            
+            document.getElementById('realityDistortion').addEventListener('input', (e) => {
+                params.realityDistortion = parseFloat(e.target.value);
+                updateInfoDisplay();
+            });
+        }
+        
+        // Update information display
+        function updateInfoDisplay() {
+            document.getElementById('currentDimension').textContent = params.dimensionalProjection.toFixed(1) + 'D';
+            document.getElementById('vertexCount').textContent = params.polytopeComplexity;
+            
+            // Calculate mathematical properties
+            const edges = Math.floor(params.polytopeComplexity * (params.polytopeComplexity - 1) / 2);
+            const faces = Math.floor(edges * params.dimensionalProjection / 3);
+            const cells = Math.floor(faces * (params.dimensionalProjection - 1) / 4);
+            
+            document.getElementById('edgeCount').textContent = edges;
+            document.getElementById('faceCount').textContent = faces;
+            document.getElementById('cellCount').textContent = cells;
+            document.getElementById('phiRatio').textContent = params.goldenRatio.toFixed(3);
+            
+            // Update projection type based on complexity
+            let projectionType = '';
+            if (params.polytopeComplexity <= 8) projectionType = '7-Simplex';
+            else if (params.polytopeComplexity <= 16) projectionType = '7-Cross';
+            else if (params.polytopeComplexity <= 24) projectionType = '24-Cell';
+            else if (params.polytopeComplexity <= 120) projectionType = '120-Cell';
+            else projectionType = '600-Cell';
+            
+            document.getElementById('projectionType').textContent = projectionType;
+        }
+        
+        // Custom cursor following mouse
+        function setupCursor() {
+            const cursor = document.getElementById('cursor');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = (e.clientX - 25) + 'px';
+                cursor.style.top = (e.clientY - 25) + 'px';
+                
+                // Mouse position affects consciousness field
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                params.consciousnessField = 0.5 + x * 1.5;
+                params.realityDistortion = 0.5 + y * 2.5;
+                
+                updateInfoDisplay();
+            });
+        }
+        
+        // Resize handler
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        // Initialize everything
+        function init() {
+            initWebGL();
+            setupControls();
+            setupCursor();
+            updateInfoDisplay();
+            
+            window.addEventListener('resize', onWindowResize, false);
+            
+            console.log('🌌 VIB34D WebGL Polytope Engine Initialized');
+            console.log('🔮 Real-time 7D mathematics with revolutionary shader system');
+            console.log('⚡ Every parameter creates dramatic mathematical transformations');
+        }
+        
+        // Start the engine
+        init();
+    </script>
+</body>
+</html>
