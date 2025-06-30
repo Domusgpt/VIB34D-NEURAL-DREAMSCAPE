@@ -69,6 +69,14 @@ class UserEventReactiveCore {
             interactionEnergy: 0
         };
         
+        // Fix undefined property issues
+        this.currentTime = 0;
+        this.lastMousePos = { x: 0, y: 0 };
+        this.pressedKeys = new Set();
+        this.isMouseDown = false;
+        this.clickStartTime = 0;
+        this.lastInteractionTime = 0;
+        
         // Timing for rhythm detection
         this.rhythmDetection = {
             lastEventTime: 0,
@@ -579,6 +587,10 @@ class UserEventReactiveCore {
      */
     
     handleMouseMove(e) {
+        if (!this.lastMousePos) {
+            this.lastMousePos = { x: e.clientX, y: e.clientY };
+            return;
+        }
         const deltaX = e.clientX - this.lastMousePos.x;
         const deltaY = e.clientY - this.lastMousePos.y;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -629,6 +641,9 @@ class UserEventReactiveCore {
     }
     
     handleKeyDown(e) {
+        if (!this.pressedKeys) {
+            this.pressedKeys = new Set();
+        }
         this.pressedKeys.add(e.code);
         
         // Precision mapping for keyboard events
@@ -637,6 +652,9 @@ class UserEventReactiveCore {
     }
     
     handleKeyUp(e) {
+        if (!this.pressedKeys) {
+            this.pressedKeys = new Set();
+        }
         this.pressedKeys.delete(e.code);
         
         // Small precision boost on key release

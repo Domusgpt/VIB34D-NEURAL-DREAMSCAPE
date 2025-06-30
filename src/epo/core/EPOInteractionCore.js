@@ -298,6 +298,26 @@ export class EPOInteractionCore {
     }
     
     /**
+     * Handle scroll-based section interactions
+     */
+    handleScrollInteraction() {
+        const scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        
+        // Update reading progress
+        if (this.systemController) {
+            this.systemController.updateParameter('reading-progress', scrollProgress);
+        }
+        
+        // Record scroll interaction
+        this.recordInteraction('scroll', { 
+            progress: scrollProgress,
+            position: window.scrollY
+        });
+        
+        console.log(`📜 Scroll progress: ${(scrollProgress * 100).toFixed(1)}%`);
+    }
+    
+    /**
      * Initialize progress tracking system
      */
     initializeProgressTracking() {
