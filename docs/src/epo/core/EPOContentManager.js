@@ -244,7 +244,7 @@ export class EPOContentManager {
     async loadFullPaper() {
         try {
             // Load from CLAUDE.md where the complete paper is now stored
-            const response = await fetch('/CLAUDE.md');
+            const response = await fetch('./CLAUDE.md');
             const claudeContent = await response.text();
             
             // Extract the EPO paper section from CLAUDE.md
