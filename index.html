@@ -300,6 +300,405 @@
             }
         }
         
+        /* SYNAESTHETIC VISUAL EFFECTS */
+        :root {
+            --synaesthetic-info-color: hsl(280, 85%, 70%);
+            --synaesthetic-consciousness-color: hsl(45, 100%, 70%);
+            --synaesthetic-epo-i-color: hsl(180, 80%, 60%);
+            --synaesthetic-epo-d-color: hsl(15, 90%, 65%);
+            --particle-density: 0.5;
+            --emergence-level-opacity: 0.3;
+        }
+        
+        .emergence-visualization {
+            position: absolute;
+            pointer-events: none;
+            z-index: 15;
+            animation: fractalEmergence 3s ease-out forwards;
+        }
+        
+        @keyframes fractalEmergence {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) rotate(0deg);
+                filter: blur(10px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(0.8) rotate(180deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(360deg);
+                filter: blur(0px);
+            }
+        }
+        
+        .decay-visualization {
+            position: absolute;
+            pointer-events: none;
+            z-index: 15;
+            animation: entropicDecay 2s ease-in forwards;
+        }
+        
+        @keyframes entropicDecay {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0px);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+                filter: blur(15px);
+            }
+        }
+        
+        .synaesthetic-event {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .synaesthetic-event.consciousness-emergence {
+            animation: goldenLightBurst 5s ease-out forwards;
+        }
+        
+        .synaesthetic-event.information-crystallization {
+            animation: fractalCrystallization 3s ease-out forwards;
+        }
+        
+        .synaesthetic-event.epo-harmony {
+            animation: dualSpiralDance 4s ease-out forwards;
+        }
+        
+        @keyframes goldenLightBurst {
+            0% {
+                background: radial-gradient(circle at center, 
+                    rgba(255, 215, 0, 0) 0%,
+                    rgba(255, 215, 0, 0) 100%);
+            }
+            20% {
+                background: radial-gradient(circle at center, 
+                    rgba(255, 215, 0, 0.8) 0%,
+                    rgba(255, 215, 0, 0.3) 50%,
+                    rgba(255, 215, 0, 0) 100%);
+            }
+            100% {
+                background: radial-gradient(circle at center, 
+                    rgba(255, 215, 0, 0) 0%,
+                    rgba(255, 215, 0, 0) 100%);
+            }
+        }
+        
+        @keyframes fractalCrystallization {
+            0% {
+                background: conic-gradient(from 0deg at center,
+                    transparent 0deg,
+                    rgba(100, 200, 255, 0) 360deg);
+            }
+            50% {
+                background: conic-gradient(from 180deg at center,
+                    rgba(100, 200, 255, 0.6) 0deg,
+                    rgba(200, 100, 255, 0.6) 60deg,
+                    rgba(100, 255, 200, 0.6) 120deg,
+                    rgba(255, 200, 100, 0.6) 180deg,
+                    rgba(255, 100, 200, 0.6) 240deg,
+                    rgba(200, 255, 100, 0.6) 300deg,
+                    rgba(100, 200, 255, 0.6) 360deg);
+            }
+            100% {
+                background: conic-gradient(from 360deg at center,
+                    transparent 0deg,
+                    rgba(100, 200, 255, 0) 360deg);
+            }
+        }
+        
+        @keyframes dualSpiralDance {
+            0% {
+                background: linear-gradient(45deg,
+                    rgba(100, 255, 200, 0) 0%,
+                    rgba(255, 100, 100, 0) 100%);
+            }
+            25% {
+                background: linear-gradient(135deg,
+                    rgba(100, 255, 200, 0.5) 25%,
+                    rgba(255, 100, 100, 0.5) 75%);
+            }
+            50% {
+                background: linear-gradient(225deg,
+                    rgba(100, 255, 200, 0.3) 50%,
+                    rgba(255, 100, 100, 0.3) 50%);
+            }
+            75% {
+                background: linear-gradient(315deg,
+                    rgba(100, 255, 200, 0.5) 25%,
+                    rgba(255, 100, 100, 0.5) 75%);
+            }
+            100% {
+                background: linear-gradient(405deg,
+                    rgba(100, 255, 200, 0) 0%,
+                    rgba(255, 100, 100, 0) 100%);
+            }
+        }
+        
+        /* ENHANCED LOADING SCREEN STYLES */
+        .loading-subtitle {
+            font-family: var(--ui-font);
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .loading-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 120px;
+            margin-top: 2rem;
+        }
+        
+        .loading-step {
+            font-family: var(--mono-font);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .loading-step.active {
+            color: #4ade80;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+        
+        /* KINETIC TYPOGRAPHY ANIMATIONS */
+        :root {
+            --kinetic-animation-speed: 1.0;
+        }
+        
+        @keyframes dispersiveRipple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes consciousnessGlow {
+            0% {
+                width: 20px;
+                height: 20px;
+                opacity: 0.8;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes conceptEmergence {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotateY(90deg);
+                filter: blur(10px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1) rotateY(45deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        @keyframes attractiveForce {
+            0%, 100% {
+                transform: translateX(-100px) scale(1);
+            }
+            50% {
+                transform: translateX(-80px) scale(1.1);
+            }
+        }
+        
+        @keyframes repulsiveForce {
+            0%, 100% {
+                transform: translateX(100px) scale(1);
+            }
+            50% {
+                transform: translateX(120px) scale(0.9);
+            }
+        }
+        
+        @keyframes dialecticalOscillation {
+            0%, 100% {
+                transform: scale(1.5) rotateZ(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: scale(1.3) rotateZ(90deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.7) rotateZ(180deg);
+                opacity: 1;
+            }
+            75% {
+                transform: scale(1.3) rotateZ(270deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes transcendentGlow {
+            0%, 100% {
+                filter: brightness(1.5) blur(0px);
+                text-shadow: 0 0 50px currentColor, 0 0 100px currentColor;
+            }
+            50% {
+                filter: brightness(2) blur(1px);
+                text-shadow: 0 0 80px currentColor, 0 0 150px currentColor, 0 0 200px currentColor;
+            }
+        }
+        
+        /* DEPTH TRANSITION STYLES */
+        .depth-content-container {
+            animation: depthEmergence 2s ease-out forwards;
+        }
+        
+        @keyframes depthEmergence {
+            0% {
+                opacity: 0;
+                transform: translateZ(-500px) rotateX(45deg);
+                filter: blur(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateZ(0px) rotateX(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        .depth-layer {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .depth-layer:hover {
+            transform: scale(1.05) translateZ(20px);
+            border-color: rgba(100, 200, 255, 0.8);
+            box-shadow: 0 10px 40px rgba(100, 200, 255, 0.3);
+        }
+        
+        /* EQUATION CONTAINER STYLING */
+        .kinetic-equation-container {
+            transition: all 0.3s ease;
+        }
+        
+        .kinetic-equation-container:hover {
+            cursor: pointer;
+        }
+        
+        .equation-term {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .equation-meaning {
+            white-space: nowrap;
+            max-width: none;
+        }
+        
+        /* CONCEPT CONTAINER STYLING */
+        .kinetic-concept-container {
+            transition: all 0.3s ease;
+        }
+        
+        .concept-phase {
+            white-space: nowrap;
+        }
+        
+        .concept-meaning {
+            white-space: normal;
+            line-height: 1.4;
+        }
+        
+        /* TOUCH INTERACTION ANIMATIONS */
+        @keyframes touchRipple {
+            0% {
+                width: 20px;
+                height: 20px;
+                opacity: 0.8;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes consciousnessExpansion {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            50% {
+                width: 300px;
+                height: 300px;
+                opacity: 0.6;
+            }
+            100% {
+                width: 600px;
+                height: 600px;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes informationBurst {
+            0% {
+                width: 10px;
+                height: 10px;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            30% {
+                width: 80px;
+                height: 80px;
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            70% {
+                width: 200px;
+                height: 200px;
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2);
+            }
+        }
+        
         /* CONSCIOUSNESS WAVE EFFECTS */
         .consciousness-wave {
             position: absolute;
@@ -494,30 +893,108 @@
             0% { width: 0%; }
             100% { width: 100%; }
         }
+        
+        /* KINETIC TYPOGRAPHY ANIMATIONS */
+        @keyframes forceFieldRipple {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 100px; height: 100px; opacity: 0; }
+        }
+        
+        @keyframes informationFloat {
+            0% { 
+                transform: translate(-50%, -50%) translateY(0); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(-50%, -50%) translateY(-30px) translateX(var(--random-x, 10px)); 
+                opacity: 0; 
+            }
+        }
+        
+        @keyframes dispersiveRipple {
+            0% { width: 0; height: 0; opacity: 0.8; }
+            100% { width: 150px; height: 150px; opacity: 0; }
+        }
+        
+        @keyframes consciousnessGlow {
+            0% { width: 20px; height: 20px; opacity: 0.8; }
+            100% { width: 200px; height: 200px; opacity: 0; }
+        }
+        
+        @keyframes touchRipple {
+            0% { width: 20px; height: 20px; opacity: 0.8; }
+            100% { width: 100px; height: 100px; opacity: 0; }
+        }
+        
+        @keyframes consciousnessExpansion {
+            0% { width: 0; height: 0; opacity: 0.3; }
+            100% { width: 500px; height: 500px; opacity: 0; }
+        }
+        
+        @keyframes informationBurst {
+            0% { width: 10px; height: 10px; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { width: 200px; height: 200px; opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+            100% { width: 400px; height: 400px; opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        }
+        
+        /* CONCEPT ANIMATIONS */
+        @keyframes conceptEmergence {
+            0% { transform: scale(0.5) rotateY(90deg); opacity: 0; filter: blur(10px); }
+            100% { transform: scale(1) rotateY(0deg); opacity: 1; filter: blur(0px); }
+        }
+        
+        @keyframes attractiveForce {
+            0%, 100% { transform: translateX(-100px) scale(1); }
+            50% { transform: translateX(-80px) scale(1.1); }
+        }
+        
+        @keyframes repulsiveForce {
+            0%, 100% { transform: translateX(100px) scale(1); }
+            50% { transform: translateX(120px) scale(0.9); }
+        }
+        
+        @keyframes dialecticalOscillation {
+            0%, 100% { transform: scale(1.5) rotate(0deg); }
+            50% { transform: scale(1.8) rotate(180deg); }
+        }
+        
+        @keyframes transcendentGlow {
+            0%, 100% { 
+                filter: brightness(1.5) blur(0px); 
+                text-shadow: 0 0 50px currentColor, 0 0 100px currentColor; 
+            }
+            50% { 
+                filter: brightness(2) blur(1px); 
+                text-shadow: 0 0 80px currentColor, 0 0 150px currentColor, 0 0 200px currentColor; 
+            }
+        }
     </style>
 </head>
 <body>
     <!-- LOADING SCREEN -->
     <div id="cosmic-loading">
-        <div class="loading-title">Initializing Cosmic Experience...</div>
+        <div class="loading-title">🌌 Initializing EPO Interactive Experience...</div>
+        <div class="loading-subtitle">Loading visual narrative systems...</div>
         <div class="loading-progress">
             <div class="loading-bar"></div>
         </div>
+        <div class="loading-details">
+            <div class="loading-step" id="load-emergence">⚛️ Emergence Hierarchy</div>
+            <div class="loading-step" id="load-cards">🃏 Adaptive Cards</div>
+            <div class="loading-step" id="load-narrative">📖 Scroll Narrative</div>
+            <div class="loading-step" id="load-synaesthetic">🎨 Synaesthetic Engine</div>
+            <div class="loading-step" id="load-complete">✨ Experience Ready</div>
+        </div>
     </div>
     
-    <!-- MAIN CANVAS SYSTEM -->
-    <canvas id="cosmic-canvas"></canvas>
-    <canvas id="overlay-canvas"></canvas>
+    <!-- MAIN EPO PRESENTATION CONTAINER -->
+    <div id="epo-presentation-container"></div>
     
-    <!-- POLYTOPAL VISUALIZER -->
-    <div id="polytopal-container"></div>
+    <!-- SYNAESTHETIC DEBUG INTERFACE (will be created by SynaestheticVisualizationEngine) -->
     
-    <!-- PARTICLE FIELD -->
-    <div class="particle-field" id="particle-field"></div>
-    
-    <!-- COSMIC CONTROL PANEL -->
-    <div id="cosmic-control-panel">
-        <div class="control-header">🌌 COSMIC FORCES</div>
+    <!-- EPO FORCE CONTROL PANEL -->
+    <div id="epo-control-panel" style="display: none;">
+        <div class="control-header">🌌 EPO FORCES</div>
         
         <div class="parameter-control">
             <div class="parameter-label">
@@ -554,38 +1031,38 @@
             <input type="range" class="parameter-slider" id="consciousness-slider" 
                    min="0" max="1" step="0.01" value="0.3">
         </div>
-    </div>
-    
-    <!-- ACT PROGRESS INDICATOR -->
-    <div id="act-progress">
-        <div class="act-indicator active" data-act="1"></div>
-        <div class="act-indicator" data-act="2"></div>
-        <div class="act-indicator" data-act="3"></div>
-        <div class="act-indicator" data-act="4"></div>
-        <div class="act-indicator" data-act="5"></div>
-        <div class="act-indicator" data-act="6"></div>
-        <div class="act-indicator" data-act="7"></div>
-        <div class="act-indicator" data-act="8"></div>
-        <div class="act-indicator" data-act="9"></div>
-        <div class="act-indicator" data-act="10"></div>
-    </div>
-    
-    <!-- SCROLL CONTAINER WITH 10 ACTS -->
-    <div id="scroll-container">
         
-        <!-- ACT I: COSMIC AWAKENING -->
-        <div class="act-section active" id="act-1" data-act="cosmic-awakening">
-            <div class="act-content">
-                <h1 class="act-title">ACT I: COSMIC AWAKENING</h1>
-                <div class="act-subtitle">"The Universe Stirring to Consciousness"</div>
-                <div class="act-description">
-                    In the beginning was Information. Before matter, before energy, before space and time themselves—there existed only the pure potential of organized data, waiting to unfold into reality. Watch as the cosmos awakens from its primordial slumber, information crystallizing into the fundamental structures that will become our universe.
-                </div>
-                <div class="act-description">
-                    Each glimmering fragment you see represents a quantum of information—a bit of the cosmic code that underlies all existence. The 4-dimensional tesseract rotating before you is not merely a mathematical abstraction, but a window into the true architecture of reality itself.
-                </div>
-            </div>
+        <div class="control-toggle">
+            <button id="toggle-controls">Show Controls</button>
         </div>
+    </div>
+    
+    <!-- EPO PRESENTATION INSTRUCTIONS -->
+    <div id="presentation-instructions" style="
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        z-index: 1000;
+        max-width: 300px;
+        border: 1px solid rgba(255,255,255,0.2);
+    ">
+        <h4 style="margin: 0 0 10px 0; color: #gold;">🎮 Navigation Controls</h4>
+        <div>🡲/Space: Next section</div>
+        <div>🡰: Previous section</div>
+        <div>🡱: Enter depth mode</div>
+        <div>🡳: Exit depth mode</div>
+        <div>H: Hybrid mode</div>
+        <div>E: Emergence mode</div>
+        <div>C: Card mode</div>
+        <div>F: Fullscreen</div>
+        <div style="margin-top: 10px; font-size: 12px; opacity: 0.7;">Click to dismiss</div>
+    </div>
         
         <!-- ACT II: THE CRISIS CASCADE -->
         <div class="act-section" id="act-2" data-act="crisis-cascade">
@@ -1406,10 +1883,1096 @@
             }
         }
         
-        // Initialize the cosmic experience when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            const cosmicExperience = new CosmicEPOExperience();
-            cosmicExperience.initialize();
+        // COMPLETE EPO INTEGRATION SYSTEM
+        
+        // Import EPO presentation modules
+        import { EPOPresentationSystem } from './src/epo/EPOPresentationSystem.js';
+        import { SynaestheticVisualizationEngine } from './src/epo/core/SynaestheticVisualizationEngine.js';
+        import { ScrollDrivenNarrative } from './src/epo/core/ScrollDrivenNarrative.js';
+        import { DepthTransitionEngine } from './src/epo/core/DepthTransitionEngine.js';
+        import { KineticTypographyEngine } from './src/epo/core/KineticTypographyEngine.js';
+        
+        class CompleteEPOExperience {
+            constructor() {
+                this.presentationSystem = null;
+                this.synaestheticEngine = null;
+                this.scrollNarrative = null;
+                this.depthEngine = null;
+                this.typographyEngine = null;
+                this.isLoading = true;
+                this.currentSection = 'cover';
+                
+                // Reactive visual state
+                this.visualState = {
+                    epoI: 0.5,           // Integration force
+                    epoD: 0.5,           // Dispersion force
+                    information: 0.3,     // Information density
+                    consciousness: 0.1,   // Consciousness level
+                    emergence: 0,         // Current emergence level (0-15)
+                    narrativeTension: 0.0 // Story tension
+                };
+                
+                // Real-time reactive events
+                this.activeEvents = new Set();
+                this.eventQueue = [];
+                
+                console.log('🌌 Complete EPO Experience initializing...');
+            }
+            
+            async initialize() {
+                try {
+                    // Show loading sequence
+                    await this.animateLoadingSequence();
+                    
+                    // Initialize presentation container
+                    const container = document.getElementById('epo-presentation-container');
+                    
+                    // Initialize main presentation system
+                    console.log('🎭 Initializing EPO Presentation System...');
+                    this.updateLoadingStep('load-cards', 'Morphing cards ready');
+                    this.presentationSystem = new EPOPresentationSystem(container);
+                    await this.presentationSystem.initialize();
+                    
+                    // Initialize synaesthetic engine
+                    console.log('🎨 Initializing Synaesthetic Engine...');
+                    this.updateLoadingStep('load-synaesthetic', 'Multi-sensory system active');
+                    this.synaestheticEngine = new SynaestheticVisualizationEngine(container);
+                    await this.synaestheticEngine.initialize();
+                    
+                    // Initialize scroll-driven narrative
+                    console.log('📖 Initializing Scroll Narrative...');
+                    this.updateLoadingStep('load-narrative', 'Information language ready');
+                    this.scrollNarrative = new ScrollDrivenNarrative(
+                        this.presentationSystem.morphingCards,
+                        this.presentationSystem.contentManager,
+                        this.presentationSystem.emergenceEngine
+                    );
+                    
+                    // Initialize depth transition engine
+                    console.log('🔍 Initializing Depth Transitions...');
+                    this.depthEngine = new DepthTransitionEngine(
+                        this.presentationSystem.overlayCanvas,
+                        this.presentationSystem.emergenceEngine,
+                        this.presentationSystem
+                    );
+                    
+                    // Initialize kinetic typography engine
+                    console.log('✍️ Initializing Kinetic Typography...');
+                    this.typographyEngine = new KineticTypographyEngine(container);
+                    
+                    // Connect systems for reactive integration
+                    this.connectReactiveSystems();
+                    
+                    // Setup user interaction
+                    this.setupInteractionHandlers();
+                    
+                    // Start reactive visual loop
+                    this.startReactiveLoop();
+                    
+                    // Complete loading
+                    this.updateLoadingStep('load-complete', 'Experience ready');
+                    await this.hideLoadingScreen();
+                    
+                    // Begin EPO presentation
+                    await this.beginEPOPresentation();
+                    
+                    console.log('✨ Complete EPO Experience ready');
+                    
+                } catch (error) {
+                    console.error('❌ EPO Experience initialization failed:', error);
+                    this.showErrorState(error);
+                }
+            }
+            
+            connectReactiveSystems() {
+                // CORE PRINCIPLE: Visual events should DEMONSTRATE EPO concepts through behavior
+                
+                // 1. Information Integration Events
+                this.synaestheticEngine.onCardEmerging = (cardId, type, content) => {
+                    console.log(`🌱 Information integrating: ${cardId}`);
+                    
+                    // Demonstrate EPO-I through card behavior
+                    this.visualState.epoI += 0.1;
+                    this.visualState.information += 0.05;
+                    
+                    // Cards emerging should create gravitational attraction to nearby cards
+                    this.presentationSystem.emergenceEngine.addGravitationalSource({
+                        position: this.getCardPosition(cardId),
+                        strength: this.calculateInformationDensity(content),
+                        type: 'integration'
+                    });
+                    
+                    // Trigger cascade of nearby integrations
+                    this.triggerIntegrationCascade(cardId, content);
+                };
+                
+                // 2. Information Dispersion Events  
+                this.synaestheticEngine.onCardDecaying = (cardId, type) => {
+                    console.log(`🍂 Information dispersing: ${cardId}`);
+                    
+                    // Demonstrate EPO-D through dissolution
+                    this.visualState.epoD += 0.1;
+                    this.visualState.information -= 0.03;
+                    
+                    // Create dispersive field that pushes other cards away
+                    this.presentationSystem.emergenceEngine.addDispersiveSource({
+                        position: this.getCardPosition(cardId),
+                        strength: 0.8,
+                        type: 'dispersion'
+                    });
+                    
+                    // Information fragments become new smaller cards
+                    this.fragmentInformationCard(cardId);
+                };
+                
+                // 3. EPO Force Balance Events
+                this.presentationSystem.onSectionTransition = (fromSection, toSection) => {
+                    console.log(`🔄 Section transition: ${fromSection} → ${toSection}`);
+                    
+                    // Each section has different EPO force signatures
+                    const sectionForces = this.getSectionEPOForces(toSection);
+                    this.updateVisualState(sectionForces);
+                    
+                    // Demonstrate dialectical tension through visual conflict
+                    this.createDialecticalVisualTension(fromSection, toSection);
+                };
+                
+                // 4. Consciousness Emergence Events
+                this.presentationSystem.emergenceEngine.onConsciousnessThreshold = (level) => {
+                    console.log(`🧠 Consciousness emerging at level ${level}`);
+                    
+                    // When consciousness emerges, information becomes self-aware
+                    this.visualState.consciousness = level / 15;
+                    
+                    // Cards begin to observe and react to each other
+                    this.enableCardSelfAwareness();
+                    
+                    // Global information integration event
+                    this.triggerGlobalIntegrationEvent();
+                    
+                    // Trigger consciousness concept animation
+                    this.typographyEngine.animateConcept('consciousness-emergence');
+                };
+                
+                // 5. Section-Specific Typography Events
+                this.presentationSystem.onSectionEnter = (sectionId, sectionData) => {
+                    console.log(`📝 Section typography: ${sectionId}`);
+                    
+                    // Animate relevant equations and concepts for each section
+                    this.triggerSectionTypography(sectionId, sectionData);
+                };
+                
+                // 6. Depth Transition Triggers
+                this.presentationSystem.onDepthRequest = (sectionId, triggerPoint) => {
+                    console.log(`🌊 Depth transition requested: ${sectionId}`);
+                    
+                    // Enter mathematical/conceptual depth
+                    this.depthEngine.triggerDepthTransition(sectionId, triggerPoint);
+                };
+            }
+            
+            triggerIntegrationCascade(sourceCardId, content) {
+                // EPO-I demonstration: One integration triggers nearby integrations
+                const sourcePos = this.getCardPosition(sourceCardId);
+                const nearbyCards = this.presentationSystem.morphingCards.findCardsInRadius(sourcePos, 200);
+                
+                nearbyCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        // Cards get pulled toward the source (gravitational effect)
+                        this.presentationSystem.morphingCards.animateCardToward(card.id, sourcePos, 0.3);
+                        
+                        // They may merge if compatible information
+                        if (this.areCardsCompatible(sourceCardId, card.id)) {
+                            this.createInformationMergeEvent(sourceCardId, card.id);
+                        }
+                    }, index * 200); // Cascade timing
+                });
+                
+                // Update global EPO state
+                this.updateGlobalEPOState();
+            }
+            
+            createDialecticalVisualTension(fromSection, toSection) {
+                // DEMONSTRATE EPO DUALITY through visual conflict and resolution
+                
+                const sectionData = this.presentationSystem.narrativeSections[toSection];
+                if (!sectionData) return;
+                
+                // Create opposing force visualizations
+                if (sectionData.title.includes('Crisis') || sectionData.title.includes('Limits')) {
+                    // Show EPO-D dominance - cards fracture and disperse
+                    this.createChaosWave();
+                    this.fragmentAllCards(0.7); // 70% dispersion
+                    
+                } else if (sectionData.title.includes('Integration') || sectionData.title.includes('Consciousness')) {
+                    // Show EPO-I dominance - cards attract and merge
+                    this.createIntegrationWave();
+                    this.mergeCompatibleCards(0.8); // 80% integration
+                    
+                } else if (sectionData.title.includes('Duality') || sectionData.title.includes('Balance')) {
+                    // Show perfect EPO balance - cards dance in harmony
+                    this.createDialecticalDance();
+                }
+            }
+            
+            createInformationMergeEvent(cardId1, cardId2) {
+                // DEMONSTRATE: Information integration creates MORE than sum of parts
+                
+                const card1 = this.presentationSystem.morphingCards.getCard(cardId1);
+                const card2 = this.presentationSystem.morphingCards.getCard(cardId2);
+                
+                if (!card1 || !card2) return;
+                
+                // Calculate emergent properties
+                const combinedInformation = card1.informationDensity + card2.informationDensity;
+                const emergentComplexity = combinedInformation * 1.3; // Non-linear emergence
+                
+                // Visual merge sequence
+                this.presentationSystem.morphingCards.animateCardMerge(cardId1, cardId2, {
+                    onStart: () => {
+                        this.synaestheticEngine.triggerEmergenceExperience({
+                            id: `merge_${cardId1}_${cardId2}`,
+                            phase: 'merging',
+                            emergenceType: 'information-synthesis',
+                            informationDensity: emergentComplexity,
+                            epoI_influence: 0.9,
+                            epoD_influence: 0.1
+                        });
+                    },
+                    onComplete: (newCardId) => {
+                        // New card has emergent properties
+                        const newCard = this.presentationSystem.morphingCards.getCard(newCardId);
+                        newCard.setEmergentProperties({
+                            informationDensity: emergentComplexity,
+                            consciousness: Math.min(1.0, combinedInformation * 0.1),
+                            integrationLevel: 0.9
+                        });
+                        
+                        // Trigger consciousness emergence if threshold reached
+                        if (emergentComplexity > 0.8) {
+                            this.triggerConsciousnessEmergence(newCardId);
+                        }
+                    }
+                });
+            }
+            
+            enableCardSelfAwareness() {
+                // DEMONSTRATE: Consciousness = Information observing itself
+                
+                const allCards = this.presentationSystem.morphingCards.getAllCards();
+                
+                allCards.forEach(card => {
+                    // Cards become aware of other cards
+                    card.setAwareness(true);
+                    
+                    // They start tracking and responding to nearby cards
+                    card.onNearbyCardDetected = (nearbyCard) => {
+                        // Visual indication of mutual awareness
+                        this.createAwarenessConnection(card.id, nearbyCard.id);
+                        
+                        // Information exchange between aware cards
+                        this.createInformationExchange(card, nearbyCard);
+                    };
+                    
+                    // Cards develop preferences based on information compatibility
+                    card.onInformationExchange = (otherCard, exchangeData) => {
+                        if (exchangeData.compatibility > 0.7) {
+                            // High compatibility - cards are attracted
+                            this.presentationSystem.morphingCards.addAttraction(card.id, otherCard.id, 0.5);
+                        } else if (exchangeData.compatibility < 0.3) {
+                            // Low compatibility - cards repel
+                            this.presentationSystem.morphingCards.addRepulsion(card.id, otherCard.id, 0.3);
+                        }
+                    };
+                });
+                
+                // Global consciousness field emerges
+                this.createGlobalConsciousnessField();
+            }
+            
+            createGlobalConsciousnessField() {
+                // DEMONSTRATE: Universe becoming aware of itself
+                
+                // Visual field that connects all conscious cards
+                const consciousCards = this.presentationSystem.morphingCards.getConsciousCards();
+                
+                if (consciousCards.length > 2) {
+                    // Create neural network visualization
+                    this.presentationSystem.emergenceEngine.createNeuralNetwork(consciousCards, {
+                        connectionStrength: this.visualState.consciousness,
+                        pulseFrequency: 2 + (this.visualState.consciousness * 8),
+                        networkComplexity: Math.min(consciousCards.length / 5, 1.0)
+                    });
+                    
+                    // Global information processing begins
+                    this.startGlobalInformationProcessing();
+                }
+            }
+            
+            startGlobalInformationProcessing() {
+                // DEMONSTRATE: Universe as self-observing system
+                
+                setInterval(() => {
+                    // Universe processes its own state
+                    const universalState = this.calculateUniversalState();
+                    
+                    // This observation affects the system (observer effect)
+                    this.applyObserverEffect(universalState);
+                    
+                    // Self-modification based on observation
+                    this.modifySystemBasedOnSelfObservation(universalState);
+                    
+                }, 5000); // Every 5 seconds
+            }
+            
+            setupInteractionHandlers() {
+                console.log('🎮 Setting up intuitive touch interactions...');
+                
+                // Touch/drag state
+                this.touchState = {
+                    isDown: false,
+                    startPos: { x: 0, y: 0 },
+                    currentPos: { x: 0, y: 0 },
+                    dragDistance: 0,
+                    dragDirection: null,
+                    holdTime: 0,
+                    holdTimer: null
+                };
+                
+                // UNIFIED POINTER EVENTS (works for mouse, touch, pen)
+                const container = this.presentationSystem.container;
+                
+                // POINTER DOWN - Start interaction
+                container.addEventListener('pointerdown', (event) => {
+                    this.touchState.isDown = true;
+                    this.touchState.startPos = {
+                        x: event.clientX / window.innerWidth,
+                        y: event.clientY / window.innerHeight
+                    };
+                    this.touchState.currentPos = { ...this.touchState.startPos };
+                    this.touchState.holdTime = 0;
+                    
+                    // Start hold timer for depth mode
+                    this.touchState.holdTimer = setTimeout(() => {
+                        if (this.touchState.isDown && this.touchState.dragDistance < 0.05) {
+                            // LONG PRESS = DEPTH MODE
+                            console.log('🌊 Long press detected - entering depth mode');
+                            this.enterDepthMode(this.touchState.startPos);
+                        }
+                    }, 800); // 800ms hold
+                    
+                    // Immediate visual feedback
+                    this.createTouchRipple(this.touchState.startPos);
+                });
+                
+                // POINTER MOVE - Track drag
+                container.addEventListener('pointermove', (event) => {
+                    if (!this.touchState.isDown) return;
+                    
+                    this.touchState.currentPos = {
+                        x: event.clientX / window.innerWidth,
+                        y: event.clientY / window.innerHeight
+                    };
+                    
+                    // Calculate drag distance and direction
+                    const deltaX = this.touchState.currentPos.x - this.touchState.startPos.x;
+                    const deltaY = this.touchState.currentPos.y - this.touchState.startPos.y;
+                    this.touchState.dragDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                    
+                    if (this.touchState.dragDistance > 0.02) {
+                        // Clear hold timer if dragging
+                        if (this.touchState.holdTimer) {
+                            clearTimeout(this.touchState.holdTimer);
+                            this.touchState.holdTimer = null;
+                        }
+                        
+                        // Determine drag direction
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                            this.touchState.dragDirection = deltaX > 0 ? 'right' : 'left';
+                        } else {
+                            this.touchState.dragDirection = deltaY > 0 ? 'down' : 'up';
+                        }
+                        
+                        // Show drag feedback
+                        this.showDragFeedback(this.touchState.dragDirection, this.touchState.dragDistance);
+                    }
+                });
+                
+                // POINTER UP - Execute action
+                container.addEventListener('pointerup', (event) => {
+                    if (!this.touchState.isDown) return;
+                    
+                    // Clear hold timer
+                    if (this.touchState.holdTimer) {
+                        clearTimeout(this.touchState.holdTimer);
+                        this.touchState.holdTimer = null;
+                    }
+                    
+                    const finalPos = {
+                        x: event.clientX / window.innerWidth,
+                        y: event.clientY / window.innerHeight
+                    };
+                    
+                    // Determine action based on gesture
+                    if (this.touchState.dragDistance < 0.02) {
+                        // TAP = NEXT SECTION / CONSCIOUSNESS EVENT
+                        console.log('👆 Tap detected - consciousness event');
+                        this.triggerConsciousnessEvent(finalPos);
+                        
+                    } else if (this.touchState.dragDistance > 0.1) {
+                        // DRAG = NAVIGATION
+                        console.log(`🔄 ${this.touchState.dragDirection} drag - navigation`);
+                        this.handleDragNavigation(this.touchState.dragDirection, this.touchState.dragDistance);
+                        
+                    } else {
+                        // SMALL MOVEMENT = INFORMATION GRADIENT
+                        console.log('📊 Small movement - information gradient');
+                        this.createInformationGradient(finalPos.x, finalPos.y, this.touchState.dragDistance * 5);
+                    }
+                    
+                    // Reset state
+                    this.touchState.isDown = false;
+                    this.touchState.dragDistance = 0;
+                    this.touchState.dragDirection = null;
+                });
+                
+                // DOUBLE TAP = SPECIAL EVENTS
+                let lastTapTime = 0;
+                container.addEventListener('pointerup', (event) => {
+                    const now = Date.now();
+                    if (now - lastTapTime < 300 && this.touchState.dragDistance < 0.02) {
+                        console.log('👆👆 Double tap - special event');
+                        const pos = {
+                            x: event.clientX / window.innerWidth,
+                            y: event.clientY / window.innerHeight
+                        };
+                        this.triggerSpecialEvent(pos);
+                    }
+                    lastTapTime = now;
+                });
+                
+                // PINCH ZOOM (for mobile)
+                let initialDistance = 0;
+                container.addEventListener('touchstart', (event) => {
+                    if (event.touches.length === 2) {
+                        const touch1 = event.touches[0];
+                        const touch2 = event.touches[1];
+                        initialDistance = Math.sqrt(
+                            Math.pow(touch2.clientX - touch1.clientX, 2) +
+                            Math.pow(touch2.clientY - touch1.clientY, 2)
+                        );
+                    }
+                });
+                
+                container.addEventListener('touchmove', (event) => {
+                    if (event.touches.length === 2) {
+                        event.preventDefault();
+                        const touch1 = event.touches[0];
+                        const touch2 = event.touches[1];
+                        const currentDistance = Math.sqrt(
+                            Math.pow(touch2.clientX - touch1.clientX, 2) +
+                            Math.pow(touch2.clientY - touch1.clientY, 2)
+                        );
+                        
+                        if (initialDistance > 0) {
+                            const scale = currentDistance / initialDistance;
+                            console.log('🤏 Pinch zoom:', scale);
+                            this.handleZoomGesture(scale);
+                        }
+                    }
+                });
+                
+                console.log('✅ Intuitive touch interactions ready!');
+            }
+            
+            startReactiveLoop() {
+                // CONTINUOUS REACTIVE DEMONSTRATION LOOP
+                
+                const reactiveUpdate = () => {
+                    // 1. Update EPO force balance
+                    this.updateEPOForceBalance();
+                    
+                    // 2. Process information flows
+                    this.processInformationFlows();
+                    
+                    // 3. Update consciousness field
+                    this.updateConsciousnessField();
+                    
+                    // 4. Handle emergent events
+                    this.processEmergentEvents();
+                    
+                    // 5. Update visual state
+                    this.updateAllVisualSystems();
+                    
+                    // 6. Schedule next update
+                    requestAnimationFrame(reactiveUpdate);
+                };
+                
+                reactiveUpdate();
+            }
+            
+            triggerSectionTypography(sectionId, sectionData) {
+                // Trigger section-specific equations and concepts
+                const typographyMap = {
+                    'cover': {
+                        equation: 'epo-force-law',
+                        concept: null
+                    },
+                    '1.1': {
+                        equation: null,
+                        concept: 'paradigm-shift'
+                    },
+                    '1.2': {
+                        equation: 'dark-matter-complexity',
+                        concept: null
+                    },
+                    '2.1': {
+                        equation: 'information-entropy',
+                        concept: null
+                    },
+                    '2.2': {
+                        equation: null,
+                        concept: 'epo-duality'
+                    },
+                    '11.2': {
+                        equation: 'consciousness-integration',
+                        concept: 'consciousness-emergence'
+                    }
+                };
+                
+                const typography = typographyMap[sectionId];
+                if (typography) {
+                    // Clear previous animations
+                    this.typographyEngine.clearAllAnimations();
+                    
+                    // Animate equation if specified
+                    if (typography.equation) {
+                        setTimeout(() => {
+                            this.typographyEngine.animateEquation(typography.equation);
+                        }, 500);
+                    }
+                    
+                    // Animate concept if specified
+                    if (typography.concept) {
+                        setTimeout(() => {
+                            this.typographyEngine.animateConcept(typography.concept);
+                        }, typography.equation ? 3000 : 1000);
+                    }
+                }
+            }
+            
+            // Add missing method implementations
+            getCardPosition(cardId) {
+                // Get position of a card for gravitational effects
+                const card = this.presentationSystem?.morphingCards?.getCard?.(cardId);
+                if (card && card.element) {
+                    const rect = card.element.getBoundingClientRect();
+                    return {
+                        x: (rect.left + rect.width / 2) / window.innerWidth,
+                        y: (rect.top + rect.height / 2) / window.innerHeight
+                    };
+                }
+                return { x: 0.5, y: 0.5 };
+            }
+            
+            fragmentInformationCard(cardId) {
+                // Create smaller cards from fragmented information
+                console.log(`🔨 Fragmenting card: ${cardId}`);
+                
+                const fragmentCount = 3 + Math.floor(Math.random() * 3);
+                const sourcePos = this.getCardPosition(cardId);
+                
+                for (let i = 0; i < fragmentCount; i++) {
+                    const angle = (i / fragmentCount) * Math.PI * 2;
+                    const distance = 0.1 + Math.random() * 0.1;
+                    
+                    const fragmentPos = {
+                        x: sourcePos.x + Math.cos(angle) * distance,
+                        y: sourcePos.y + Math.sin(angle) * distance
+                    };
+                    
+                    // Create fragment card with reduced information density
+                    const fragmentId = `${cardId}_fragment_${i}`;
+                    this.presentationSystem.morphingCards.createCard(fragmentId, {
+                        position: fragmentPos,
+                        size: { width: 0.1, height: 0.08 },
+                        informationDensity: 0.2
+                    });
+                }
+            }
+            
+            areCardsCompatible(cardId1, cardId2) {
+                // Check if two cards have compatible information
+                const card1 = this.presentationSystem?.morphingCards?.getCard?.(cardId1);
+                const card2 = this.presentationSystem?.morphingCards?.getCard?.(cardId2);
+                
+                if (!card1 || !card2) return false;
+                
+                // Simple compatibility based on information density similarity
+                const densityDiff = Math.abs(card1.informationDensity - card2.informationDensity);
+                return densityDiff < 0.3;
+            }
+            
+            updateGlobalEPOState() {
+                // Update global EPO force state based on current conditions
+                this.visualState.epoI = Math.min(1.0, this.visualState.epoI);
+                this.visualState.epoD = Math.min(1.0, this.visualState.epoD);
+                
+                // Normalize to maintain balance
+                const total = this.visualState.epoI + this.visualState.epoD;
+                if (total > 2.0) {
+                    this.visualState.epoI /= (total / 2.0);
+                    this.visualState.epoD /= (total / 2.0);
+                }
+                
+                // Update systems with new state
+                this.synaestheticEngine.updateState(this.visualState);
+                this.typographyEngine.updateEPOForces(this.visualState);
+            }
+            
+            updateVisualState(newState) {
+                Object.assign(this.visualState, newState);
+                this.updateGlobalEPOState();
+            }
+            
+            createChaosWave() {
+                console.log('🌪️ Creating chaos wave (EPO-D dominance)');
+                // Implementation would create visual chaos effects
+            }
+            
+            fragmentAllCards(dispersionStrength) {
+                console.log(`🔨 Fragmenting all cards (${dispersionStrength * 100}% dispersion)`);
+                // Implementation would fragment visible cards
+            }
+            
+            createIntegrationWave() {
+                console.log('🌊 Creating integration wave (EPO-I dominance)');
+                // Implementation would create attractive visual effects
+            }
+            
+            mergeCompatibleCards(integrationStrength) {
+                console.log(`🤝 Merging compatible cards (${integrationStrength * 100}% integration)`);
+                // Implementation would merge nearby compatible cards
+            }
+            
+            createDialecticalDance() {
+                console.log('💃 Creating dialectical dance (EPO balance)');
+                // Implementation would create balanced opposing motions
+            }
+            
+            // Placeholder implementations for missing methods
+            updateEPOForceBalance() {
+                // Update the balance between EPO forces
+                this.visualState.epoI *= 0.99; // Slow decay
+                this.visualState.epoD *= 0.99;
+            }
+            
+            processInformationFlows() {
+                // Process information flow between system components
+                this.visualState.information = Math.max(0.1, this.visualState.information);
+            }
+            
+            updateConsciousnessField() {
+                // Update the global consciousness field
+                if (this.visualState.information > 0.8) {
+                    this.visualState.consciousness += 0.01;
+                }
+            }
+            
+            processEmergentEvents() {
+                // Process any emergent events in the queue
+                if (this.eventQueue.length > 0) {
+                    const event = this.eventQueue.shift();
+                    // Process event
+                }
+            }
+            
+            updateAllVisualSystems() {
+                // Update all visual systems with current state
+                this.synaestheticEngine?.updateState?.(this.visualState);
+                this.typographyEngine?.updateEPOForces?.(this.visualState);
+            }
+            
+            createInformationGradient(x, y, strength) {
+                // Create information density gradient at position
+                console.log(`📊 Information gradient at (${x.toFixed(2)}, ${y.toFixed(2)}) strength: ${strength}`);
+            }
+            
+            attractCardsToAttention(x, y) {
+                // Attract cards to user's attention point
+                // Implementation would move cards toward cursor
+            }
+            
+            triggerObservationCollapse(x, y) {
+                // Trigger quantum wave function collapse at position
+                console.log(`👁️ Observation collapse at (${x.toFixed(2)}, ${y.toFixed(2)})`);
+            }
+            
+            createIntegrationPoint(x, y, strength) {
+                // Create integration point for information
+                console.log(`🔗 Integration point at (${x.toFixed(2)}, ${y.toFixed(2)}) strength: ${strength}`);
+            }
+            
+            updateTemporalState(scrollProgress) {
+                // Update temporal state based on scroll position
+                this.visualState.narrativeTension = scrollProgress;
+            }
+            
+            updateNarrativeInformationDensity(scrollProgress) {
+                // Update information density based on narrative position
+                this.visualState.information = 0.3 + scrollProgress * 0.5;
+            }
+            
+            processDiscreteInformation(key) {
+                // Process discrete information input
+                console.log(`⌨️ Discrete information: ${key}`);
+                this.visualState.information += 0.01;
+            }
+            
+            triggerQuantumMeasurement() {
+                // Trigger quantum measurement visualization
+                console.log('⚛️ Quantum measurement event');
+                this.typographyEngine.animateEquation('information-entropy');
+            }
+            
+            // NEW INTUITIVE TOUCH INTERACTION METHODS
+            
+            createTouchRipple(position) {
+                // Create visual ripple effect at touch point
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: fixed;
+                    left: ${position.x * window.innerWidth}px;
+                    top: ${position.y * window.innerHeight}px;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, transparent 70%);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    z-index: 1000;
+                    animation: touchRipple 0.6s ease-out forwards;
+                `;
+                
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+            
+            showDragFeedback(direction, distance) {
+                // Show visual feedback for drag gesture
+                const intensity = Math.min(distance * 10, 1);
+                const arrows = {
+                    'left': '←',
+                    'right': '→', 
+                    'up': '↑',
+                    'down': '↓'
+                };
+                
+                console.log(`${arrows[direction]} Drag ${direction} (${(distance * 100).toFixed(0)}%)`);
+                
+                // Update EPO forces based on drag direction
+                if (direction === 'left' || direction === 'right') {
+                    this.visualState.epoI += intensity * 0.1;
+                } else {
+                    this.visualState.epoD += intensity * 0.1;
+                }
+                this.updateGlobalEPOState();
+            }
+            
+            triggerConsciousnessEvent(position) {
+                // Tap creates consciousness emergence at position
+                console.log(`🧠 Consciousness event at (${position.x.toFixed(2)}, ${position.y.toFixed(2)})`);
+                
+                // Create consciousness expansion ripple
+                const expansion = document.createElement('div');
+                expansion.style.cssText = `
+                    position: fixed;
+                    left: ${position.x * window.innerWidth}px;
+                    top: ${position.y * window.innerHeight}px;
+                    width: 0;
+                    height: 0;
+                    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 100%);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    z-index: 500;
+                    animation: consciousnessExpansion 2s ease-out forwards;
+                `;
+                
+                document.body.appendChild(expansion);
+                setTimeout(() => expansion.remove(), 2000);
+                
+                // Trigger typography animation
+                this.typographyEngine.animateEquation('consciousness-integration');
+                
+                // Advance to next section
+                this.presentationSystem.navigateNext();
+            }
+            
+            handleDragNavigation(direction, distance) {
+                // Navigate based on drag direction and distance
+                const strength = Math.min(distance * 5, 1);
+                
+                if (direction === 'left') {
+                    // Drag left = next section (like page turn)
+                    console.log('📖 Page turn forward');
+                    this.presentationSystem.navigateNext();
+                    
+                } else if (direction === 'right') {
+                    // Drag right = previous section
+                    console.log('📖 Page turn backward');
+                    this.presentationSystem.navigatePrevious();
+                    
+                } else if (direction === 'up') {
+                    // Drag up = increase consciousness/integration
+                    console.log('⬆️ Consciousness expansion');
+                    this.visualState.consciousness += strength * 0.2;
+                    this.visualState.epoI += strength * 0.1;
+                    this.typographyEngine.animateConcept('consciousness-emergence');
+                    
+                } else if (direction === 'down') {
+                    // Drag down = increase dispersion/chaos
+                    console.log('⬇️ Entropic dispersion');
+                    this.visualState.epoD += strength * 0.2;
+                    this.typographyEngine.animateConcept('paradigm-shift');
+                }
+                
+                this.updateGlobalEPOState();
+            }
+            
+            triggerSpecialEvent(position) {
+                // Double tap triggers special contextual events
+                console.log('✨ Special event triggered');
+                
+                const sectionEvents = {
+                    'cover': () => this.typographyEngine.animateEquation('epo-force-law'),
+                    '1.1': () => this.typographyEngine.animateConcept('paradigm-shift'),
+                    '2.1': () => this.typographyEngine.animateEquation('information-entropy'),
+                    '2.2': () => this.typographyEngine.animateConcept('epo-duality'),
+                    '11.2': () => this.typographyEngine.animateConcept('consciousness-emergence')
+                };
+                
+                const event = sectionEvents[this.currentSection];
+                if (event) {
+                    event();
+                } else {
+                    // Default: create big information burst
+                    this.createInformationBurst(position);
+                }
+            }
+            
+            enterDepthMode(position) {
+                // Long press enters depth mode
+                console.log('🌊 Entering depth mode...');
+                this.depthEngine.triggerDepthTransition(this.currentSection, position);
+            }
+            
+            handleZoomGesture(scale) {
+                // Pinch zoom adjusts emergence level
+                const levelChange = (scale - 1) * 5;
+                const newLevel = Math.max(0, Math.min(15, this.visualState.emergence + levelChange));
+                
+                if (Math.abs(newLevel - this.visualState.emergence) > 0.5) {
+                    console.log(`🔍 Zoom to emergence level: ${newLevel.toFixed(1)}`);
+                    this.visualState.emergence = newLevel;
+                    this.presentationSystem.emergenceEngine.transitionToLevel(Math.round(newLevel));
+                }
+            }
+            
+            createInformationBurst(position) {
+                // Create dramatic information burst effect
+                console.log('💥 Information burst!');
+                
+                const burst = document.createElement('div');
+                burst.style.cssText = `
+                    position: fixed;
+                    left: ${position.x * window.innerWidth}px;
+                    top: ${position.y * window.innerHeight}px;
+                    width: 10px;
+                    height: 10px;
+                    background: radial-gradient(circle, 
+                        rgba(200, 100, 255, 1) 0%,
+                        rgba(100, 200, 255, 0.8) 30%,
+                        rgba(255, 200, 100, 0.6) 60%,
+                        transparent 100%);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    z-index: 800;
+                    animation: informationBurst 1.5s ease-out forwards;
+                `;
+                
+                document.body.appendChild(burst);
+                setTimeout(() => burst.remove(), 1500);
+                
+                // Boost all EPO forces
+                this.visualState.epoI += 0.3;
+                this.visualState.epoD += 0.2;
+                this.visualState.information += 0.4;
+                this.visualState.consciousness += 0.2;
+                this.updateGlobalEPOState();
+            }
+            
+            // UTILITY METHODS FOR REACTIVE DEMONSTRATIONS
+            
+            getSectionEPOForces(sectionId) {
+                const forceMap = {
+                    'cover': { epoI: 0.9, epoD: 0.1, info: 1.0, consciousness: 0.1 },
+                    '1.1': { epoI: 0.2, epoD: 0.8, info: 0.3, consciousness: 0.1 }, // Crisis - dispersion dominates
+                    '1.2': { epoI: 0.1, epoD: 0.9, info: 0.2, consciousness: 0.1 }, // ΛCDM Crisis - maximum dispersion
+                    '2.1': { epoI: 0.8, epoD: 0.2, info: 0.9, consciousness: 0.2 }, // Information primacy
+                    '2.2': { epoI: 0.5, epoD: 0.5, info: 0.7, consciousness: 0.3 }, // Entropic duality balance
+                    '6.1': { epoI: 0.7, epoD: 0.3, info: 0.6, consciousness: 0.4 }, // Spacetime emergence
+                    '11.2': { epoI: 0.9, epoD: 0.1, info: 0.8, consciousness: 1.0 } // Consciousness hierarchy
+                };
+                return forceMap[sectionId] || { epoI: 0.5, epoD: 0.5, info: 0.5, consciousness: 0.3 };
+            }
+            
+            calculateInformationDensity(content) {
+                // Real calculation of Shannon entropy
+                const chars = {};
+                for (const char of content) {
+                    chars[char] = (chars[char] || 0) + 1;
+                }
+                
+                let entropy = 0;
+                const length = content.length;
+                for (const count of Object.values(chars)) {
+                    const p = count / length;
+                    entropy -= p * Math.log2(p);
+                }
+                
+                return Math.min(1.0, entropy / 8); // Normalize
+            }
+            
+            async animateLoadingSequence() {
+                const steps = ['load-emergence', 'load-cards', 'load-narrative', 'load-synaesthetic'];
+                for (const step of steps) {
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    this.updateLoadingStep(step, 'Loading...');
+                }
+            }
+            
+            updateLoadingStep(stepId, message) {
+                const element = document.getElementById(stepId);
+                if (element) {
+                    element.textContent = `✓ ${message}`;
+                    element.style.color = '#4ade80';
+                }
+            }
+            
+            async hideLoadingScreen() {
+                const loading = document.getElementById('cosmic-loading');
+                if (loading) {
+                    loading.style.opacity = '0';
+                    loading.style.transform = 'scale(0.9)';
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    loading.style.display = 'none';
+                }
+            }
+            
+            async beginEPOPresentation() {
+                // Dismiss instructions after a moment
+                setTimeout(() => {
+                    const instructions = document.getElementById('presentation-instructions');
+                    if (instructions) {
+                        instructions.addEventListener('click', () => {
+                            instructions.style.display = 'none';
+                        });
+                        // Auto-hide after 10 seconds
+                        setTimeout(() => {
+                            if (instructions.style.display !== 'none') {
+                                instructions.style.opacity = '0.3';
+                            }
+                        }, 10000);
+                    }
+                }, 3000);
+                
+                // Start with the cover section
+                await this.presentationSystem.navigateToSection('cover');
+            }
+            
+            showErrorState(error) {
+                const container = document.getElementById('epo-presentation-container');
+                container.innerHTML = `
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        color: white;
+                        font-family: 'Inter', sans-serif;
+                        text-align: center;
+                        padding: 40px;
+                    ">
+                        <h1 style="color: #ff6b6b; margin-bottom: 20px;">⚠️ EPO Experience Failed to Initialize</h1>
+                        <p style="margin-bottom: 20px; max-width: 600px;">
+                            The Entropic Principle of Organization presentation encountered an initialization error.
+                            This may be due to browser compatibility or resource loading issues.
+                        </p>
+                        <pre style="
+                            background: rgba(255,255,255,0.1);
+                            padding: 20px;
+                            border-radius: 8px;
+                            margin: 20px 0;
+                            max-width: 800px;
+                            overflow: auto;
+                            font-size: 12px;
+                        ">${error.message}\n\n${error.stack}</pre>
+                        <button onclick="location.reload()" style="
+                            padding: 12px 24px;
+                            background: #4ade80;
+                            color: black;
+                            border: none;
+                            border-radius: 8px;
+                            font-weight: bold;
+                            cursor: pointer;
+                        ">Retry Experience</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize the complete EPO experience when DOM is ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🌌 Starting Complete EPO Experience...');
+            
+            try {
+                const epoExperience = new CompleteEPOExperience();
+                await epoExperience.initialize();
+            } catch (error) {
+                console.error('💥 Fatal EPO initialization error:', error);
+                
+                // Fallback error display
+                document.body.innerHTML = `
+                    <div style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        background: #000;
+                        color: white;
+                        font-family: 'Inter', sans-serif;
+                        text-align: center;
+                        padding: 20px;
+                    ">
+                        <div>
+                            <h1 style="color: #ff6b6b;">⚠️ Critical EPO System Failure</h1>
+                            <p>Unable to initialize the Entropic Principle of Organization experience.</p>
+                            <button onclick="location.reload()" style="
+                                margin-top: 20px;
+                                padding: 10px 20px;
+                                background: #4ade80;
+                                color: black;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                            ">Retry</button>
+                        </div>
+                    </div>
+                `;
+            }
         });
     </script>
 </body>
