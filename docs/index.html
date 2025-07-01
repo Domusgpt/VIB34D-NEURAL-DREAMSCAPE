@@ -47,6 +47,72 @@
             overflow-x: hidden;
             position: relative;
             height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for mobile */
+        }
+        
+        /* RESPONSIVE DESIGN OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            :root {
+                --mobile-scale: 0.8;
+                --touch-target-size: 44px; /* Apple's recommended touch target */
+            }
+            
+            #cosmic-canvas {
+                width: 100vw !important;
+                height: 100vh !important;
+                height: 100dvh !important; /* Dynamic viewport for mobile */
+            }
+            
+            .card {
+                min-width: var(--touch-target-size) !important;
+                min-height: var(--touch-target-size) !important;
+                font-size: calc(1rem * var(--mobile-scale)) !important;
+            }
+            
+            .loading-content h1 {
+                font-size: 2rem !important;
+            }
+            
+            .loading-content p {
+                font-size: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            :root {
+                --mobile-scale: 0.7;
+            }
+            
+            .loading-content h1 {
+                font-size: 1.5rem !important;
+            }
+            
+            .loading-content p {
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        @media (min-width: 2560px) {
+            :root {
+                --desktop-scale: 1.2;
+            }
+            
+            .card {
+                font-size: calc(1rem * var(--desktop-scale)) !important;
+            }
+        }
+        
+        /* TOUCH OPTIMIZATION */
+        @media (pointer: coarse) {
+            .card {
+                min-width: 44px !important;
+                min-height: 44px !important;
+                padding: 8px !important;
+            }
+            
+            #cosmic-canvas {
+                touch-action: pan-x pan-y pinch-zoom;
+            }
         }
         
         /* MAIN CANVAS SYSTEM */
@@ -2228,7 +2294,7 @@
             setupInteractionHandlers() {
                 console.log('🎮 Setting up intuitive touch interactions...');
                 
-                // Touch/drag state
+                // Enhanced touch/drag state with performance tracking
                 this.touchState = {
                     isDown: false,
                     startPos: { x: 0, y: 0 },
@@ -2236,15 +2302,20 @@
                     dragDistance: 0,
                     dragDirection: null,
                     holdTime: 0,
-                    holdTimer: null
+                    holdTimer: null,
+                    startTime: 0,
+                    lastFeedback: 0,
+                    lastNavigation: 0
                 };
                 
                 // UNIFIED POINTER EVENTS (works for mouse, touch, pen)
                 const container = this.presentationSystem.container;
                 
-                // POINTER DOWN - Start interaction
+                // ULTRA-FAST POINTER DOWN - immediate response, no debouncing
                 container.addEventListener('pointerdown', (event) => {
+                    // IMMEDIATE response - no RAF delay
                     this.touchState.isDown = true;
+                    this.touchState.startTime = performance.now();
                     this.touchState.startPos = {
                         x: event.clientX / window.innerWidth,
                         y: event.clientY / window.innerHeight
@@ -2252,51 +2323,54 @@
                     this.touchState.currentPos = { ...this.touchState.startPos };
                     this.touchState.holdTime = 0;
                     
-                    // Start hold timer for depth mode
+                    // Immediate visual feedback - no delay
+                    this.createTouchRipple(this.touchState.startPos);
+                    
+                    // Faster hold timer
                     this.touchState.holdTimer = setTimeout(() => {
                         if (this.touchState.isDown && this.touchState.dragDistance < 0.05) {
-                            // LONG PRESS = DEPTH MODE
                             console.log('🌊 Long press detected - entering depth mode');
                             this.enterDepthMode(this.touchState.startPos);
                         }
-                    }, 800); // 800ms hold
-                    
-                    // Immediate visual feedback
-                    this.createTouchRipple(this.touchState.startPos);
-                });
+                    }, 400); // Ultra-fast 400ms
+                }, { passive: false }); // Non-passive for immediate response
                 
-                // POINTER MOVE - Track drag
+                // ULTRA-FAST POINTER MOVE - minimal processing for speed
+                let lastMoveTime = 0;
                 container.addEventListener('pointermove', (event) => {
                     if (!this.touchState.isDown) return;
+                    
+                    // Throttle to 60fps max (16ms) for performance
+                    const now = performance.now();
+                    if (now - lastMoveTime < 16) return;
+                    lastMoveTime = now;
                     
                     this.touchState.currentPos = {
                         x: event.clientX / window.innerWidth,
                         y: event.clientY / window.innerHeight
                     };
                     
-                    // Calculate drag distance and direction
+                    // Fast distance calculation
                     const deltaX = this.touchState.currentPos.x - this.touchState.startPos.x;
                     const deltaY = this.touchState.currentPos.y - this.touchState.startPos.y;
                     this.touchState.dragDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
                     
-                    if (this.touchState.dragDistance > 0.02) {
+                    if (this.touchState.dragDistance > 0.01) { // Ultra-low threshold
                         // Clear hold timer if dragging
                         if (this.touchState.holdTimer) {
                             clearTimeout(this.touchState.holdTimer);
                             this.touchState.holdTimer = null;
                         }
                         
-                        // Determine drag direction
-                        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                            this.touchState.dragDirection = deltaX > 0 ? 'right' : 'left';
-                        } else {
-                            this.touchState.dragDirection = deltaY > 0 ? 'down' : 'up';
-                        }
+                        // Fast direction calculation
+                        this.touchState.dragDirection = Math.abs(deltaX) > Math.abs(deltaY) 
+                            ? (deltaX > 0 ? 'right' : 'left')
+                            : (deltaY > 0 ? 'down' : 'up');
                         
-                        // Show drag feedback
+                        // Minimal visual feedback
                         this.showDragFeedback(this.touchState.dragDirection, this.touchState.dragDistance);
                     }
-                });
+                }, { passive: true }); // Passive for speed
                 
                 // POINTER UP - Execute action
                 container.addEventListener('pointerup', (event) => {
@@ -2319,8 +2393,8 @@
                         console.log('👆 Tap detected - consciousness event');
                         this.triggerConsciousnessEvent(finalPos);
                         
-                    } else if (this.touchState.dragDistance > 0.1) {
-                        // DRAG = NAVIGATION
+                    } else if (this.touchState.dragDistance > 0.05) { // Reduced threshold for faster response
+                        // DRAG = IMMEDIATE NAVIGATION - no debouncing for speed
                         console.log(`🔄 ${this.touchState.dragDirection} drag - navigation`);
                         this.handleDragNavigation(this.touchState.dragDirection, this.touchState.dragDistance);
                         

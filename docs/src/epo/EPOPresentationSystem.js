@@ -338,9 +338,14 @@ export class EPOPresentationSystem {
                 return;
             }
             
-            // Update current section
+            // Update current section with global access for testing
             const previousSection = this.currentSection;
             this.currentSection = sectionId;
+            
+            // Make current section globally accessible for test validation
+            if (window.epoExperience) {
+                window.epoExperience.currentSection = sectionId;
+            }
             
             // Synchronize emergence level
             await this.emergenceEngine.transitionToLevel(section.emergence, section.transition);
